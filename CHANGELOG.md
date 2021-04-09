@@ -1,3 +1,11 @@
+## 0.0.3
+
+- Added Support For:
+  - Functions
+  - Function Args
+  - Variable Types
+  - Function Call.
+
 ## 0.0.2
 
 - Added Base Code For generating:
