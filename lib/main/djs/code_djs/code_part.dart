@@ -14,4 +14,9 @@ abstract class CodePartDj {
 
     return _lines;
   }
+
+  @override
+  String toString() {
+    return lines().join(' ');
+  }
 }
