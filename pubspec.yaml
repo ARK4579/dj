@@ -1,6 +1,6 @@
 name: dj
-description: A sample command-line application.
-version: 0.0.1
+description: Auto-Genrate Dart & Flutter Code.
+version: 0.0.2
 homepage: https://www.ark4579.com
 
 environment:
