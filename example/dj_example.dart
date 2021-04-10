@@ -1,20 +1,11 @@
-# dj
-
-Auto-Generate Dart and Flutter Code while retaining manual user updates to generated code.
-
-## Usage
-
-A simple usage example:
-
-```dart
 import 'package:dj/dj.dart';
 
 void main() {
   var outputDir = '..\\lib';
 
   var baseDj = BaseDj(
-    baseDirectoryPath: outputDir,
-    baseNode: DirectoryDj(
+    path: outputDir,
+    node: DirectoryDj(
       directoryName: 'dj_generated',
       nodes: [
         FileDj(
@@ -46,10 +37,3 @@ void main() {
   print('Auto-Generated Code:');
   print(baseDjMap);
 }
-```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: https://github.com/ARK4579/dj/issues
