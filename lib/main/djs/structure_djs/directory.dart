@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'node.dart';
+import 'structure_types.dart';
 
 part 'directory.g.dart';
 
@@ -10,9 +11,13 @@ class DirectoryDj extends NodeDj {
   final List<NodeDj>? nodes;
 
   DirectoryDj({
-    directoryName,
+    required name,
     this.nodes,
-  }) : super(name: directoryName);
+    StructureType type = StructureType.Directory,
+  }) : super(
+          name: name,
+          type: type,
+        );
 
   factory DirectoryDj.fromJson(Map<String, dynamic> json) =>
       _$DirectoryDjFromJson(json);

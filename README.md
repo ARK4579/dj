@@ -13,12 +13,12 @@ void main() {
   var outputDir = '..\\lib';
 
   var baseDj = BaseDj(
-    baseDirectoryPath: outputDir,
-    baseNode: DirectoryDj(
-      directoryName: 'dj_generated',
+    path: outputDir,
+    node: DirectoryDj(
+      name: 'dj_generated',
       nodes: [
         FileDj(
-          fileName: 'hello_world',
+          name: 'hello_world',
           codeParts: [
             // This import is really not needed in generated file
             // Adding this line for demonstration only!
