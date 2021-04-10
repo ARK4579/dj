@@ -1,11 +1,20 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../utils/utils.dart';
 
-abstract class CodePartDj {
+part 'code_part.g.dart';
+
+@JsonSerializable()
+class CodePartDj {
+  @JsonKey(name: 'description')
   final String? description;
 
   const CodePartDj({
     this.description,
   });
+
+  factory CodePartDj.fromJson(Map<String, dynamic> json) =>
+      _$CodePartDjFromJson(json);
+  Map<String, dynamic> toJson() => _$CodePartDjToJson(this);
 
   List<String> lines() {
     var _lines = <String>[];

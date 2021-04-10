@@ -1,10 +1,18 @@
-import 'dart:io';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'djs/djs.dart';
 
+part 'base.g.dart';
+
+@JsonSerializable()
 class BaseDj {
+  @JsonKey(name: 'baseDirectoryPath')
   final String baseDirectoryPath;
+
+  @JsonKey(name: 'baseNode')
   final DirectoryDj baseNode;
+
+  @JsonKey(name: 'overwite')
   final bool overwite;
 
   const BaseDj({
@@ -12,10 +20,4 @@ class BaseDj {
     required this.baseNode,
     this.overwite = false,
   });
-
-  void generate() {
-    Directory(baseDirectoryPath).createSync(recursive: true);
-
-    baseNode.create(baseDirectoryPath);
-  }
 }

@@ -1,12 +1,25 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../utils/utils.dart';
 
 import 'code_part.dart';
 
+part 'function.g.dart';
+
+@JsonSerializable()
 class FunctionDj extends CodePartDj {
+  @JsonKey(name: 'outputStr')
   final VariableType outputType;
+
+  @JsonKey(name: 'name')
   final String name;
+
+  @JsonKey(name: 'args')
   final List<FunctionArg>? args;
+
+  @JsonKey(name: 'isAsync')
   final bool isAsync;
+
+  @JsonKey(name: 'bodyCodeParts')
   final List<CodePartDj>? bodyCodeParts;
 
   FunctionDj({
@@ -17,6 +30,10 @@ class FunctionDj extends CodePartDj {
     this.isAsync = false,
     this.bodyCodeParts,
   }) : super(description: description);
+
+  factory FunctionDj.fromJson(Map<String, dynamic> json) =>
+      _$FunctionDjFromJson(json);
+  Map<String, dynamic> toJson() => _$FunctionDjToJson(this);
 
   @override
   List<String> lines() {

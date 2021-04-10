@@ -1,9 +1,20 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'code_part.dart';
 
+part 'function_call.g.dart';
+
+@JsonSerializable()
 class FunctionCallDj extends CodePartDj {
+  @JsonKey(name: 'outputStr')
   final String? outputStr;
+
+  @JsonKey(name: 'name')
   final String name;
+
+  @JsonKey(name: 'arg')
   final String? arg;
+
+  @JsonKey(name: 'args')
   final List<String>? args;
 
   FunctionCallDj({
@@ -13,6 +24,10 @@ class FunctionCallDj extends CodePartDj {
     this.arg,
     this.args,
   }) : super(description: description);
+
+  factory FunctionCallDj.fromJson(Map<String, dynamic> json) =>
+      _$FunctionCallDjFromJson(json);
+  Map<String, dynamic> toJson() => _$FunctionCallDjToJson(this);
 
   @override
   List<String> lines() {

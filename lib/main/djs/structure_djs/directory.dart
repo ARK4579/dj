@@ -1,24 +1,21 @@
-import 'dart:io';
-
-import 'package:path/path.dart' as p;
+import 'package:json_annotation/json_annotation.dart';
 
 import 'node.dart';
 
+part 'directory.g.dart';
+
+@JsonSerializable()
 class DirectoryDj extends NodeDj {
-  final List<NodeDj> nodes;
+  @JsonKey(name: 'nodes')
+  final List<NodeDj>? nodes;
 
   DirectoryDj({
-    required directoryName,
-    this.nodes = const [],
+    directoryName,
+    this.nodes,
   }) : super(name: directoryName);
 
+  factory DirectoryDj.fromJson(Map<String, dynamic> json) =>
+      _$DirectoryDjFromJson(json);
   @override
-  void create(String baseDirectory) {
-    var absolutePath = p.join(baseDirectory, name);
-
-    print('creating directory $absolutePath');
-    Directory(absolutePath).createSync();
-
-    nodes.forEach((node) => node.create(absolutePath));
-  }
+  Map<String, dynamic> toJson() => _$DirectoryDjToJson(this);
 }

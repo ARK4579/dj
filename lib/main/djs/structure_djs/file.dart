@@ -1,12 +1,15 @@
-import 'dart:io';
-
-import 'package:path/path.dart' as p;
-
 import 'node.dart';
+import 'package:json_annotation/json_annotation.dart';
 import '../code_djs/code_djs.dart';
 
+part 'file.g.dart';
+
+@JsonSerializable()
 class FileDj extends NodeDj {
+  @JsonKey(name: 'fileExtension')
   final String fileExtension;
+
+  @JsonKey(name: 'codeParts')
   final List<CodePartDj>? codeParts;
 
   FileDj({
@@ -15,26 +18,7 @@ class FileDj extends NodeDj {
     this.codeParts,
   }) : super(name: fileName);
 
+  factory FileDj.fromJson(Map<String, dynamic> json) => _$FileDjFromJson(json);
   @override
-  void create(String baseDirectory) {
-    var absolutePath = p.join(baseDirectory, '$name.$fileExtension');
-
-    var file = File(absolutePath);
-
-    print('creating file $absolutePath');
-    file.createSync();
-
-    var fileWritter = file.openWrite();
-    codeParts?.forEach(
-      (code) {
-        code.lines().forEach(
-          (codeLine) {
-            fileWritter.writeln(codeLine);
-          },
-        );
-        fileWritter.writeln('');
-      },
-    );
-    fileWritter.close();
-  }
+  Map<String, dynamic> toJson() => _$FileDjToJson(this);
 }
