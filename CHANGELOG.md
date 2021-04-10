@@ -1,3 +1,8 @@
+## 0.0.4
+
+- Removed dart.io dependency
+- Added Support For Json Serialization
+
 ## 0.0.3
 
 - Added Support For:
