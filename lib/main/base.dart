@@ -6,18 +6,18 @@ part 'base.g.dart';
 
 @JsonSerializable()
 class BaseDj {
-  @JsonKey(name: 'baseDirectoryPath')
-  final String baseDirectoryPath;
+  @JsonKey(name: 'path')
+  final String path;
 
-  @JsonKey(name: 'baseNode')
-  final DirectoryDj baseNode;
+  @JsonKey(name: 'node')
+  final DirectoryDj node;
 
   @JsonKey(name: 'overwite')
   final bool overwite;
 
   const BaseDj({
-    required this.baseDirectoryPath,
-    required this.baseNode,
+    required this.path,
+    required this.node,
     this.overwite = false,
   });
 
