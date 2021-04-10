@@ -1,0 +1,4 @@
+enum StructureType {
+  File,
+  Directory,
+}

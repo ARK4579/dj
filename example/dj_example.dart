@@ -6,10 +6,10 @@ void main() {
   var baseDj = BaseDj(
     path: outputDir,
     node: DirectoryDj(
-      directoryName: 'dj_generated',
+      name: 'dj_generated',
       nodes: [
         FileDj(
-          fileName: 'hello_world',
+          name: 'hello_world',
           codeParts: [
             // This import is really not needed in generated file
             // Adding this line for demonstration only!
