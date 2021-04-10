@@ -1,3 +1,9 @@
+## 0.0.5
+
+- Updated BaseDj structure.
+- Updated Description in pubspec.yaml
+- Added an example and also updated it in README.md
+
 ## 0.0.4
 
 - Removed dart.io dependency
