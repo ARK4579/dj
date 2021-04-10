@@ -15,6 +15,7 @@ class ImportDj extends CodePartDj {
 
   factory ImportDj.fromJson(Map<String, dynamic> json) =>
       _$ImportDjFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$ImportDjToJson(this);
 
   @override

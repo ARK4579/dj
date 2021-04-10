@@ -33,6 +33,7 @@ class FunctionDj extends CodePartDj {
 
   factory FunctionDj.fromJson(Map<String, dynamic> json) =>
       _$FunctionDjFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$FunctionDjToJson(this);
 
   @override

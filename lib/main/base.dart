@@ -20,4 +20,7 @@ class BaseDj {
     required this.baseNode,
     this.overwite = false,
   });
+
+  factory BaseDj.fromJson(Map<String, dynamic> json) => _$BaseDjFromJson(json);
+  Map<String, dynamic> toJson() => _$BaseDjToJson(this);
 }
