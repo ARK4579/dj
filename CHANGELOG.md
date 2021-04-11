@@ -1,3 +1,8 @@
+## 0.0.6
+
+- Updated Json Serilizations to Remove Bugs.
+- Updated example.
+
 ## 0.0.5
 
 - Updated BaseDj structure.
