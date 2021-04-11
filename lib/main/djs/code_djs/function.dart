@@ -27,7 +27,11 @@ class FunctionDj extends CodePartDj {
     this.args,
     this.isAsync = false,
     this.bodyCodeParts,
-  }) : super(description: description);
+    CodePartType type = CodePartType.Function,
+  }) : super(
+          description: description,
+          type: type,
+        );
 
   factory FunctionDj.fromJson(Map<String, dynamic> json) =>
       _$FunctionDjFromJson(json);

@@ -11,7 +11,11 @@ class ImportDj extends CodePartDj {
   ImportDj({
     description,
     this.importStr = '',
-  }) : super(description: description);
+    CodePartType type = CodePartType.Import,
+  }) : super(
+          description: description,
+          type: type,
+        );
 
   factory ImportDj.fromJson(Map<String, dynamic> json) =>
       _$ImportDjFromJson(json);

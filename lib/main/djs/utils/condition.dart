@@ -58,11 +58,7 @@ class Condition {
     var operatorStr = getOperatorStr(operator);
 
     var conditionLine = '';
-    if (conditionLeft == null && conditionRight == null && operator == null) {
-      conditionLine = 'true';
-    } else if (conditionLeft != null &&
-        conditionRight != null &&
-        operator != null) {
+    if (conditionLeft != null && conditionRight != null && operator != null) {
       conditionLine = '$conditionLeft $operatorStr $conditionRight';
     } else if (conditionLeft != null && operator != null) {
       conditionLine = '$conditionLeft $operatorStr';
@@ -72,7 +68,11 @@ class Condition {
 
     var conditionBody = body?.lines().join(' ');
 
-    var condition = 'if($conditionLine) { $conditionBody }';
+    var condition = '{ $conditionBody }';
+
+    if (conditionLine != '') {
+      condition = 'if($conditionLine) $condition';
+    }
 
     if (addElse) {
       condition = ' else $condition';

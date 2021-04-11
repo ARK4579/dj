@@ -11,7 +11,11 @@ class IfElseDj extends CodePartDj {
   IfElseDj({
     description,
     this.conditions,
-  }) : super(description: description);
+    CodePartType type = CodePartType.IfElse,
+  }) : super(
+          description: description,
+          type: type,
+        );
 
   factory IfElseDj.fromJson(Map<String, dynamic> json) =>
       _$IfElseDjFromJson(json);
@@ -24,7 +28,7 @@ class IfElseDj extends CodePartDj {
 
     var i = 0;
     conditions?.forEach((condition) {
-      var addElse = (i == 0) || (i == conditions!.length - 1);
+      var addElse = (0 < i) && (i < conditions!.length - 1);
 
       _lines += condition.lines(addElse: addElse);
 
