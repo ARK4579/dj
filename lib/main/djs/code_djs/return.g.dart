@@ -1,22 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'if_else.dart';
+part of 'return.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-IfElseDj _$IfElseDjFromJson(Map<String, dynamic> json) {
-  return IfElseDj(
+ReturnDj _$ReturnDjFromJson(Map<String, dynamic> json) {
+  return ReturnDj(
     description: json['description'],
-    conditions: (json['conditions'] as List<dynamic>?)
-        ?.map((e) => Condition.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    returnStr: json['returnStr'] as String,
     type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
   );
 }
 
-Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
+Map<String, dynamic> _$ReturnDjToJson(ReturnDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -27,8 +25,7 @@ Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
 
   writeNotNull('description', instance.description);
   writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
-  writeNotNull(
-      'conditions', instance.conditions?.map((e) => e.toJson()).toList());
+  val['returnStr'] = instance.returnStr;
   return val;
 }
 

@@ -12,7 +12,7 @@ class StatelessWidgetDj extends CodePartDj {
   final List<FunctionArg>? args;
 
   @JsonKey(name: 'body')
-  final CodePartDj? body;
+  final List<CodePartDj>? body;
 
   StatelessWidgetDj({
     description,
@@ -34,7 +34,10 @@ class StatelessWidgetDj extends CodePartDj {
   List<String> lines() {
     var _lines = super.lines();
 
-    var bodyLines = body?.lines() ?? [];
+    var bodyLines = [];
+    body?.forEach((body) {
+      bodyLines += body.lines();
+    });
     var bodyStr = bodyLines.join(' ');
 
     var contructorArgs = args?.map((e) => e.asConstructorArg()).toList() ?? [];
@@ -47,8 +50,7 @@ class StatelessWidgetDj extends CodePartDj {
     var widgetLine = '';
     widgetLine += 'class $name extends StatelessWidget {';
     widgetLine += '$paramtersStr $name($argsLine);';
-    widgetLine +=
-        '@override Widget build(BuildContext context) { $bodyStr return Container();}';
+    widgetLine += '@override Widget build(BuildContext context) { $bodyStr }';
     widgetLine += '}';
 
     _lines.add(widgetLine);

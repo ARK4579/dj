@@ -13,9 +13,9 @@ StatelessWidgetDj _$StatelessWidgetDjFromJson(Map<String, dynamic> json) {
     args: (json['args'] as List<dynamic>?)
         ?.map((e) => FunctionArg.fromJson(e as Map<String, dynamic>))
         .toList(),
-    body: json['body'] == null
-        ? null
-        : CodePartDj.fromJson(json['body'] as Map<String, dynamic>),
+    body: (json['body'] as List<dynamic>?)
+        ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
+        .toList(),
     type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
   );
 }
@@ -33,7 +33,7 @@ Map<String, dynamic> _$StatelessWidgetDjToJson(StatelessWidgetDj instance) {
   writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
   writeNotNull('name', instance.name);
   writeNotNull('args', instance.args?.map((e) => e.toJson()).toList());
-  writeNotNull('body', instance.body?.toJson());
+  writeNotNull('body', instance.body?.map((e) => e.toJson()).toList());
   return val;
 }
 
@@ -69,4 +69,5 @@ const _$CodePartTypeEnumMap = {
   CodePartType.IfElse: 'IfElse',
   CodePartType.Import: 'Import',
   CodePartType.StatelessWidget: 'StatelessWidget',
+  CodePartType.Return: 'Return',
 };

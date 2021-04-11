@@ -80,4 +80,5 @@ const _$CodePartTypeEnumMap = {
   CodePartType.IfElse: 'IfElse',
   CodePartType.Import: 'Import',
   CodePartType.StatelessWidget: 'StatelessWidget',
+  CodePartType.Return: 'Return',
 };
