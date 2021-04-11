@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../utils/utils.dart';
-
-import 'code_part.dart';
+import 'package:dj/main/main.dart';
 
 part 'function.g.dart';
 
@@ -29,7 +27,11 @@ class FunctionDj extends CodePartDj {
     this.args,
     this.isAsync = false,
     this.bodyCodeParts,
-  }) : super(description: description);
+    CodePartType type = CodePartType.Function,
+  }) : super(
+          description: description,
+          type: type,
+        );
 
   factory FunctionDj.fromJson(Map<String, dynamic> json) =>
       _$FunctionDjFromJson(json);

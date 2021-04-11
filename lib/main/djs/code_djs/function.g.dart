@@ -18,6 +18,7 @@ FunctionDj _$FunctionDjFromJson(Map<String, dynamic> json) {
     bodyCodeParts: (json['bodyCodeParts'] as List<dynamic>?)
         ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
         .toList(),
+    type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
   );
 }
 
@@ -31,6 +32,7 @@ Map<String, dynamic> _$FunctionDjToJson(FunctionDj instance) {
   }
 
   writeNotNull('description', instance.description);
+  writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
   val['outputStr'] = _$VariableTypeEnumMap[instance.outputType];
   val['name'] = instance.name;
   writeNotNull('args', instance.args?.map((e) => e.toJson()).toList());
@@ -70,4 +72,11 @@ const _$VariableTypeEnumMap = {
   VariableType.Void: 'Void',
   VariableType.String: 'String',
   VariableType.StringNullable: 'StringNullable',
+};
+
+const _$CodePartTypeEnumMap = {
+  CodePartType.FunctionCall: 'FunctionCall',
+  CodePartType.Function: 'Function',
+  CodePartType.IfElse: 'IfElse',
+  CodePartType.Import: 'Import',
 };

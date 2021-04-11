@@ -1,19 +1,46 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../utils/utils.dart';
+import 'package:dj/main/main.dart';
 
 part 'code_part.g.dart';
+
+enum CodePartType {
+  FunctionCall,
+  Function,
+  IfElse,
+  Import,
+}
 
 @JsonSerializable()
 class CodePartDj {
   @JsonKey(name: 'description')
   final String? description;
 
+  @JsonKey(name: 'type')
+  final CodePartType? type;
+
   const CodePartDj({
     this.description,
+    this.type,
   });
 
-  factory CodePartDj.fromJson(Map<String, dynamic> json) =>
-      _$CodePartDjFromJson(json);
+  factory CodePartDj.fromJson(Map<String, dynamic> json) {
+    var codePartDj = _$CodePartDjFromJson(json);
+
+    switch (codePartDj.type) {
+      case CodePartType.Function:
+        return FunctionDj.fromJson(json);
+      case CodePartType.FunctionCall:
+        return FunctionCallDj.fromJson(json);
+      case CodePartType.IfElse:
+        return IfElseDj.fromJson(json);
+      case CodePartType.Import:
+        return ImportDj.fromJson(json);
+      default:
+        throw Exception(
+            'CodePartDj.fromJson not handled for ${codePartDj.type}');
+    }
+  }
+
   Map<String, dynamic> toJson() => _$CodePartDjToJson(this);
 
   List<String> lines() {

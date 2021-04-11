@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'code_part.dart';
+import 'package:dj/main/main.dart';
 
 part 'function_call.g.dart';
 
@@ -23,7 +23,11 @@ class FunctionCallDj extends CodePartDj {
     required this.name,
     this.arg,
     this.args,
-  }) : super(description: description);
+    CodePartType type = CodePartType.FunctionCall,
+  }) : super(
+          description: description,
+          type: type,
+        );
 
   factory FunctionCallDj.fromJson(Map<String, dynamic> json) =>
       _$FunctionCallDjFromJson(json);
