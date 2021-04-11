@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'variable_types.dart';
+import 'package:dj/main/main.dart';
 
 part 'function_args.g.dart';
 

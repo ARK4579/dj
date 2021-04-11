@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../utils/utils.dart';
-
-import 'code_part.dart';
+import 'package:dj/main/main.dart';
 
 part 'function.g.dart';
 
