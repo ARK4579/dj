@@ -1,4 +1,4 @@
-## 0.0.6
+## 0.0.7
 
 - Updated Json Serilizations to Remove Bugs.
 - IfElseDj added to support If/Else blocks in code.
