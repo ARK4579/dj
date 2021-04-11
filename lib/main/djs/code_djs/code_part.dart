@@ -8,6 +8,7 @@ enum CodePartType {
   Function,
   IfElse,
   Import,
+  StatelessWidget,
 }
 
 @JsonSerializable()
@@ -35,6 +36,8 @@ class CodePartDj {
         return IfElseDj.fromJson(json);
       case CodePartType.Import:
         return ImportDj.fromJson(json);
+      case CodePartType.StatelessWidget:
+        return StatelessWidgetDj.fromJson(json);
       default:
         throw Exception(
             'CodePartDj.fromJson not handled for ${codePartDj.type}');

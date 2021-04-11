@@ -72,6 +72,8 @@ class Condition {
 
     if (conditionLine != '') {
       condition = 'if($conditionLine) $condition';
+    } else {
+      addElse = true;
     }
 
     if (addElse) {

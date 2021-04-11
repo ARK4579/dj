@@ -1,22 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'if_else.dart';
+part of 'stateless_widget.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-IfElseDj _$IfElseDjFromJson(Map<String, dynamic> json) {
-  return IfElseDj(
+StatelessWidgetDj _$StatelessWidgetDjFromJson(Map<String, dynamic> json) {
+  return StatelessWidgetDj(
     description: json['description'],
-    conditions: (json['conditions'] as List<dynamic>?)
-        ?.map((e) => Condition.fromJson(e as Map<String, dynamic>))
+    name: json['name'] as String?,
+    args: (json['args'] as List<dynamic>?)
+        ?.map((e) => FunctionArg.fromJson(e as Map<String, dynamic>))
         .toList(),
+    body: json['body'] == null
+        ? null
+        : CodePartDj.fromJson(json['body'] as Map<String, dynamic>),
     type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
   );
 }
 
-Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
+Map<String, dynamic> _$StatelessWidgetDjToJson(StatelessWidgetDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -27,8 +31,9 @@ Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
 
   writeNotNull('description', instance.description);
   writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
-  writeNotNull(
-      'conditions', instance.conditions?.map((e) => e.toJson()).toList());
+  writeNotNull('name', instance.name);
+  writeNotNull('args', instance.args?.map((e) => e.toJson()).toList());
+  writeNotNull('body', instance.body?.toJson());
   return val;
 }
 

@@ -60,4 +60,5 @@ const _$CodePartTypeEnumMap = {
   CodePartType.Function: 'Function',
   CodePartType.IfElse: 'IfElse',
   CodePartType.Import: 'Import',
+  CodePartType.StatelessWidget: 'StatelessWidget',
 };
