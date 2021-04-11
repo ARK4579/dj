@@ -1,3 +1,9 @@
+## 0.0.8
+
+- Updated Json Serilizations.
+- StatelessWidgetDj added to support Stateless Widget blocks in code.
+- ReturnDj added to support return blocks in code.
+
 ## 0.0.7
 
 - Updated Json Serilizations to Remove Bugs.
