@@ -1,3 +1,7 @@
+## 0.0.9
+
+- Seprated creating and writing of FileDj
+
 ## 0.0.8
 
 - Updated Json Serilizations.
