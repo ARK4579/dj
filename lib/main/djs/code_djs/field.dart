@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:dj/main/main.dart';
 
+import '../widget_djs/dj_names_map.dart';
+
 part 'field.g.dart';
 
 @JsonSerializable()
@@ -52,8 +54,12 @@ class FieldDj extends CodePartDj {
 
     if (name == null) return _lines;
 
+    if (dataType != null && dataType != 'dynamic') {
+      print('$dataType : ${djNamesMap[dataType]}');
+    }
+
     var dataTypeLine =
-        (dataType == null || dataType == 'Key?') ? 'dynamic' : dataType;
+        dataType == null ? 'dynamic' : djNamesMap[dataType] ?? dataType;
     var fieldLine = '$dataTypeLine $name;';
 
     if (isFinal ?? false) {

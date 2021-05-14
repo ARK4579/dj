@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'field.dart';
+part of 'map.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
-  return FieldDj(
+MapDj _$MapDjFromJson(Map<String, dynamic> json) {
+  return MapDj(
     description: json['description'],
     name: json['name'] as String?,
-    dataType: json['dataType'] as String?,
-    isFinal: json['isFinal'] as bool?,
-    isRequired: json['isRequired'] as bool?,
-    isStatic: json['isStatic'] as bool?,
-    constructorOnly: json['constructorOnly'] as bool?,
-    defaultValue: json['defaultValue'],
+    keyDataType: json['keyDataType'] as String?,
+    valueDataType: json['valueDataType'] as String?,
+    values: (json['values'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(k, e as String),
+    ),
     type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
   );
 }
 
-Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
+Map<String, dynamic> _$MapDjToJson(MapDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -32,12 +31,9 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
   writeNotNull('description', instance.description);
   writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
   writeNotNull('name', instance.name);
-  writeNotNull('dataType', instance.dataType);
-  writeNotNull('isFinal', instance.isFinal);
-  writeNotNull('isRequired', instance.isRequired);
-  writeNotNull('isStatic', instance.isStatic);
-  writeNotNull('constructorOnly', instance.constructorOnly);
-  writeNotNull('defaultValue', instance.defaultValue);
+  writeNotNull('keyDataType', instance.keyDataType);
+  writeNotNull('valueDataType', instance.valueDataType);
+  writeNotNull('values', instance.values);
   return val;
 }
 

@@ -12,6 +12,9 @@ enum CodePartType {
   Return,
   Class,
   Field,
+  Enum,
+  Map,
+  // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
 @JsonSerializable()
@@ -47,6 +50,10 @@ class CodePartDj {
         return ClassDj.fromJson(json);
       case CodePartType.Field:
         return FieldDj.fromJson(json);
+      case CodePartType.Enum:
+        return EnumDj.fromJson(json);
+      case CodePartType.Map:
+        return MapDj.fromJson(json);
       default:
         throw Exception(
             'CodePartDj.fromJson not handled for ${codePartDj.type}');

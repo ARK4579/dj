@@ -7,3 +7,5 @@ export 'stateless_widget.dart';
 export 'return.dart';
 export 'field.dart';
 export 'class.dart';
+export 'enum.dart';
+export 'map.dart';

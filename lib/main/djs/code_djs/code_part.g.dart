@@ -73,4 +73,6 @@ const _$CodePartTypeEnumMap = {
   CodePartType.Return: 'Return',
   CodePartType.Class: 'Class',
   CodePartType.Field: 'Field',
+  CodePartType.Enum: 'Enum',
+  CodePartType.Map: 'Map',
 };
