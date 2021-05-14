@@ -10,6 +10,8 @@ enum CodePartType {
   Import,
   StatelessWidget,
   Return,
+  Class,
+  Field,
 }
 
 @JsonSerializable()
@@ -41,6 +43,10 @@ class CodePartDj {
         return StatelessWidgetDj.fromJson(json);
       case CodePartType.Return:
         return ReturnDj.fromJson(json);
+      case CodePartType.Class:
+        return ClassDj.fromJson(json);
+      case CodePartType.Field:
+        return FieldDj.fromJson(json);
       default:
         throw Exception(
             'CodePartDj.fromJson not handled for ${codePartDj.type}');

@@ -21,7 +21,7 @@ void main() {
               bodyCodeParts: [
                 FunctionCallDj(
                   name: 'print',
-                  args: ["'Hellow World!'"],
+                  args: ["'Hello World!'"],
                 ),
               ],
             ),

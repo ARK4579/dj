@@ -10,6 +10,10 @@ ImportDj _$ImportDjFromJson(Map<String, dynamic> json) {
   return ImportDj(
     description: json['description'],
     importStr: json['importStr'] as String,
+    isPackage: json['isPackage'] as bool,
+    isFlutter: json['isFlutter'] as bool,
+    isFile: json['isFile'] as bool,
+    isPart: json['isPart'] as bool,
     type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
   );
 }
@@ -26,6 +30,10 @@ Map<String, dynamic> _$ImportDjToJson(ImportDj instance) {
   writeNotNull('description', instance.description);
   writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
   val['importStr'] = instance.importStr;
+  val['isPackage'] = instance.isPackage;
+  val['isFlutter'] = instance.isFlutter;
+  val['isFile'] = instance.isFile;
+  val['isPart'] = instance.isPart;
   return val;
 }
 
@@ -62,4 +70,6 @@ const _$CodePartTypeEnumMap = {
   CodePartType.Import: 'Import',
   CodePartType.StatelessWidget: 'StatelessWidget',
   CodePartType.Return: 'Return',
+  CodePartType.Class: 'Class',
+  CodePartType.Field: 'Field',
 };

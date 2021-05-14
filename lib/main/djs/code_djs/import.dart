@@ -8,9 +8,25 @@ class ImportDj extends CodePartDj {
   @JsonKey(name: 'importStr')
   final String importStr;
 
+  @JsonKey(name: 'isPackage')
+  final bool isPackage;
+
+  @JsonKey(name: 'isFlutter')
+  final bool isFlutter;
+
+  @JsonKey(name: 'isFile')
+  final bool isFile;
+
+  @JsonKey(name: 'isPart')
+  final bool isPart;
+
   ImportDj({
     description,
     this.importStr = '',
+    this.isPackage = false,
+    this.isFlutter = false,
+    this.isFile = false,
+    this.isPart = false,
     CodePartType type = CodePartType.Import,
   }) : super(
           description: description,
@@ -26,7 +42,19 @@ class ImportDj extends CodePartDj {
   List<String> lines() {
     var _lines = super.lines();
 
-    var importLine = "import '$importStr';";
+    var importLine = "import '";
+    if (isPackage) {
+      importLine += 'package:$importStr/$importStr.dart';
+    } else if (isFlutter) {
+      importLine += 'package:flutter/$importStr.dart';
+    } else if (isPart) {
+      importLine = "part '$importStr.g.dart";
+    } else if (isFile) {
+      importLine += '$importStr.dart';
+    } else {
+      importLine += '$importStr';
+    }
+    importLine += "';";
 
     _lines.add(importLine);
     return _lines;

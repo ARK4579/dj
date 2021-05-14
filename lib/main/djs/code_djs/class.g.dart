@@ -1,20 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'return.dart';
+part of 'class.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReturnDj _$ReturnDjFromJson(Map<String, dynamic> json) {
-  return ReturnDj(
+ClassDj _$ClassDjFromJson(Map<String, dynamic> json) {
+  return ClassDj(
     description: json['description'],
-    returnStr: json['returnStr'] as String,
+    name: json['name'] as String?,
+    baseName: json['baseName'] as String?,
+    fields: (json['fields'] as List<dynamic>?)
+        ?.map((e) => FieldDj.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    isExtends: json['isExtends'] as bool?,
+    isImplements: json['isImplements'] as bool?,
+    jsonSerializable: json['jsonSerializable'] as bool?,
     type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
   );
 }
 
-Map<String, dynamic> _$ReturnDjToJson(ReturnDj instance) {
+Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -25,7 +32,12 @@ Map<String, dynamic> _$ReturnDjToJson(ReturnDj instance) {
 
   writeNotNull('description', instance.description);
   writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
-  val['returnStr'] = instance.returnStr;
+  writeNotNull('name', instance.name);
+  writeNotNull('baseName', instance.baseName);
+  writeNotNull('fields', instance.fields?.map((e) => e.toJson()).toList());
+  writeNotNull('isExtends', instance.isExtends);
+  writeNotNull('isImplements', instance.isImplements);
+  writeNotNull('jsonSerializable', instance.jsonSerializable);
   return val;
 }
 

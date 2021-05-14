@@ -70,4 +70,6 @@ const _$CodePartTypeEnumMap = {
   CodePartType.Import: 'Import',
   CodePartType.StatelessWidget: 'StatelessWidget',
   CodePartType.Return: 'Return',
+  CodePartType.Class: 'Class',
+  CodePartType.Field: 'Field',
 };
