@@ -47,13 +47,17 @@ class ClassDj extends CodePartDj {
 
     codeLines.add('$name({');
 
-    var constructorOnlyFields = <FieldDj>[];
+    var superOnlyFields = <FieldDj>[];
 
     fields?.forEach((field) {
       var fieldLine = '${field.name}';
       if (field.hasDefaultValue) {
-        fieldLine = '$fieldLine = ${field.defaultValue}';
-        constructorOnlyFields.add(field);
+        if (field.superOnly ?? false) {
+          superOnlyFields.add(field);
+          fieldLine = '$fieldLine = ${field.defaultValue}';
+        } else {
+          fieldLine = 'this.$fieldLine = ${field.defaultValue}';
+        }
       } else {
         fieldLine = 'this.$fieldLine';
         if (field.isRequired ?? false) {
@@ -63,12 +67,15 @@ class ClassDj extends CodePartDj {
       codeLines.add('$fieldLine,');
     });
 
-    if (constructorOnlyFields.isEmpty) {
+    if (superOnlyFields.isEmpty) {
       codeLines.add('});');
     } else {
       codeLines.add('}) : super(');
-      constructorOnlyFields.forEach((field) {
-        codeLines.add('${field.name}:${field.name},');
+      superOnlyFields.forEach((field) {
+        // Ignoring Constructor-Only Fields for Now!
+        if (field.name == 'type') {
+          codeLines.add('${field.name}:${field.name},');
+        }
       });
       codeLines.add(');');
     }
@@ -84,9 +91,7 @@ class ClassDj extends CodePartDj {
 
     if (name == null) return _lines;
 
-    fields
-        ?.where((field) => !(field.constructorOnly ?? false))
-        .forEach((field) {
+    fields?.where((field) => !(field.superOnly ?? false)).forEach((field) {
       if (_jsonSerializable) {
         _lines.add("@JsonKey(name: '${field.name}')");
       }

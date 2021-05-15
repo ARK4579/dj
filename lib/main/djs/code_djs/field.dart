@@ -19,11 +19,14 @@ class FieldDj extends CodePartDj {
   @JsonKey(name: 'isRequired')
   final bool? isRequired;
 
+  @JsonKey(name: 'isOptional')
+  final bool? isOptional;
+
   @JsonKey(name: 'isStatic')
   final bool? isStatic;
 
-  @JsonKey(name: 'constructorOnly')
-  final bool? constructorOnly;
+  @JsonKey(name: 'superOnly')
+  final bool? superOnly;
 
   @JsonKey(name: 'defaultValue')
   final dynamic defaultValue;
@@ -34,8 +37,9 @@ class FieldDj extends CodePartDj {
     this.dataType,
     this.isFinal = true,
     this.isRequired = true,
+    this.isOptional = false,
+    this.superOnly = false,
     this.isStatic = false,
-    this.constructorOnly = false,
     this.defaultValue,
     CodePartType type = CodePartType.Field,
   }) : super(
@@ -54,12 +58,42 @@ class FieldDj extends CodePartDj {
 
     if (name == null) return _lines;
 
-    if (dataType != null && dataType != 'dynamic') {
-      print('$dataType : ${djNamesMap[dataType]}');
+    if (dataType != null &&
+        dataType != 'dynamic' &&
+        !djNamesMap.keys.contains(dataType) &&
+        !dataType!.contains('<')) {
+      if (!unKnownDataTypes.contains(dataType)) {
+        // print('$dataType in $name');
+        unKnownDataTypes.add(dataType!);
+      }
     }
 
-    var dataTypeLine =
-        dataType == null ? 'dynamic' : djNamesMap[dataType] ?? dataType;
+    var dataTypeLine = 'dynamic';
+    if (dataType != null && !dataType!.contains('<')) {
+      if (djNamesMap[dataType] == null) {
+        _lines.add(
+          "// Setting data type of following field to be 'dynamic' instead of",
+        );
+        _lines.add(
+          "// $dataType Because $dataType's Dj Version Not implemented yet",
+        );
+      } else if (hasDefaultValue) {
+        _lines.add(
+          "// Setting data type of following field to be 'dynamic' instead of",
+        );
+        _lines.add(
+          '// $dataType because Non-Dj default value is provided.',
+        );
+      } else {
+        dataTypeLine = djNamesMap[dataType]!;
+      }
+    }
+    // var dataTypeLine = dataType == null
+    //     ? 'dynamic'
+    //     : (dataType!.contains('<'))
+    //         ? 'dynamic'
+    //         // : djNamesMap[dataType] ?? dataType!;
+    //         : djNamesMap[dataType] ?? 'dynamic';
     var fieldLine = '$dataTypeLine $name;';
 
     if (isFinal ?? false) {
@@ -75,4 +109,6 @@ class FieldDj extends CodePartDj {
   //
 
   bool get hasDefaultValue => defaultValue != null;
+
+  static List<String> unKnownDataTypes = [];
 }
