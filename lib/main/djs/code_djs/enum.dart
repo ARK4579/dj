@@ -12,12 +12,12 @@ class EnumDj extends CodePartDj {
   final List<String>? values;
 
   EnumDj({
-    description,
+    descriptionDj,
     this.name,
     this.values,
     CodePartDjType codePartDjType = CodePartDjType.Enum,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

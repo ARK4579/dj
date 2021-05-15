@@ -8,7 +8,7 @@ part of 'return.dart';
 
 ReturnDj _$ReturnDjFromJson(Map<String, dynamic> json) {
   return ReturnDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     returnStr: json['returnStr'] as String,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
@@ -24,7 +24,7 @@ Map<String, dynamic> _$ReturnDjToJson(ReturnDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   val['returnStr'] = instance.returnStr;

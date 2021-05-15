@@ -8,7 +8,7 @@ part of 'code_part.dart';
 
 CodePartDj _$CodePartDjFromJson(Map<String, dynamic> json) {
   return CodePartDj(
-    description: json['description'] as String?,
+    descriptionDj: json['descriptionDj'] as String?,
     codePartDjType:
         _$enumDecodeNullable(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$CodePartDjToJson(CodePartDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   return val;

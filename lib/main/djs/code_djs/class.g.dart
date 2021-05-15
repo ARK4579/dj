@@ -8,7 +8,7 @@ part of 'class.dart';
 
 ClassDj _$ClassDjFromJson(Map<String, dynamic> json) {
   return ClassDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     name: json['name'] as String?,
     baseName: json['baseName'] as String?,
     fields: (json['fields'] as List<dynamic>?)
@@ -31,7 +31,7 @@ Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   writeNotNull('name', instance.name);

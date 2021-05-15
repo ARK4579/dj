@@ -8,7 +8,7 @@ part of 'enum.dart';
 
 EnumDj _$EnumDjFromJson(Map<String, dynamic> json) {
   return EnumDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     name: json['name'] as String?,
     values:
         (json['values'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -26,7 +26,7 @@ Map<String, dynamic> _$EnumDjToJson(EnumDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   writeNotNull('name', instance.name);

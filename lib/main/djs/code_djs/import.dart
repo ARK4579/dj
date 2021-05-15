@@ -21,7 +21,7 @@ class ImportDj extends CodePartDj {
   final bool isPart;
 
   ImportDj({
-    description,
+    descriptionDj,
     this.importStr = '',
     this.isPackage = false,
     this.isFlutter = false,
@@ -29,7 +29,7 @@ class ImportDj extends CodePartDj {
     this.isPart = false,
     CodePartDjType codePartDjType = CodePartDjType.Import,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

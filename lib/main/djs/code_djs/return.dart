@@ -9,11 +9,11 @@ class ReturnDj extends CodePartDj {
   final String returnStr;
 
   ReturnDj({
-    description,
+    descriptionDj,
     this.returnStr = '',
     CodePartDjType codePartDjType = CodePartDjType.Return,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

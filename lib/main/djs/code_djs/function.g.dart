@@ -8,7 +8,7 @@ part of 'function.dart';
 
 FunctionDj _$FunctionDjFromJson(Map<String, dynamic> json) {
   return FunctionDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     outputType: _$enumDecode(_$VariableTypeEnumMap, json['outputStr']),
     name: json['name'] as String,
     args: (json['args'] as List<dynamic>?)
@@ -32,7 +32,7 @@ Map<String, dynamic> _$FunctionDjToJson(FunctionDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   val['outputStr'] = _$VariableTypeEnumMap[instance.outputType];

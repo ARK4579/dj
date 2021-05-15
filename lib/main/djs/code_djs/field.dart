@@ -36,7 +36,7 @@ class FieldDj extends CodePartDj {
   final dynamic defaultValue;
 
   FieldDj({
-    description,
+    descriptionDj,
     this.name,
     this.dataType,
     this.safeDataType,
@@ -49,7 +49,7 @@ class FieldDj extends CodePartDj {
     this.defaultValue,
     CodePartDjType codePartDjType = CodePartDjType.Field,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

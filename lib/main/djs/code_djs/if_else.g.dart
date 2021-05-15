@@ -8,7 +8,7 @@ part of 'if_else.dart';
 
 IfElseDj _$IfElseDjFromJson(Map<String, dynamic> json) {
   return IfElseDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     conditions: (json['conditions'] as List<dynamic>?)
         ?.map((e) => Condition.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -26,7 +26,7 @@ Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   writeNotNull(

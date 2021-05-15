@@ -18,14 +18,14 @@ class FunctionCallDj extends CodePartDj {
   final List<String>? args;
 
   FunctionCallDj({
-    description,
+    descriptionDj,
     this.outputStr,
     required this.name,
     this.arg,
     this.args,
     CodePartDjType codePartDjType = CodePartDjType.FunctionCall,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

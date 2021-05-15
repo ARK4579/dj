@@ -8,7 +8,7 @@ part of 'map.dart';
 
 MapDj _$MapDjFromJson(Map<String, dynamic> json) {
   return MapDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     name: json['name'] as String?,
     keyDataType: json['keyDataType'] as String?,
     valueDataType: json['valueDataType'] as String?,
@@ -29,7 +29,7 @@ Map<String, dynamic> _$MapDjToJson(MapDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   writeNotNull('name', instance.name);

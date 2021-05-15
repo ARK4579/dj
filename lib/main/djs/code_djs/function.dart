@@ -21,7 +21,7 @@ class FunctionDj extends CodePartDj {
   final List<CodePartDj>? bodyCodeParts;
 
   FunctionDj({
-    description,
+    descriptionDj,
     required this.outputType,
     required this.name,
     this.args,
@@ -29,7 +29,7 @@ class FunctionDj extends CodePartDj {
     this.bodyCodeParts,
     CodePartDjType codePartDjType = CodePartDjType.Function,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

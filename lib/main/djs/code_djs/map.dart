@@ -18,14 +18,14 @@ class MapDj extends CodePartDj {
   final Map<String, String>? values;
 
   MapDj({
-    description,
+    descriptionDj,
     this.name,
     this.keyDataType,
     this.valueDataType,
     this.values,
     CodePartDjType codePartDjType = CodePartDjType.Map,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

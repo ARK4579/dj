@@ -9,11 +9,11 @@ class IfElseDj extends CodePartDj {
   final List<Condition>? conditions;
 
   IfElseDj({
-    description,
+    descriptionDj,
     this.conditions,
     CodePartDjType codePartDjType = CodePartDjType.IfElse,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

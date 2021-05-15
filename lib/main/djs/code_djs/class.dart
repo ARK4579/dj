@@ -24,7 +24,7 @@ class ClassDj extends CodePartDj {
   final bool? jsonSerializable;
 
   ClassDj({
-    description,
+    descriptionDj,
     this.name,
     this.baseName,
     this.fields,
@@ -33,7 +33,7 @@ class ClassDj extends CodePartDj {
     this.jsonSerializable,
     CodePartDjType codePartDjType = CodePartDjType.Class,
   }) : super(
-          description: description,
+          descriptionDj: descriptionDj,
           codePartDjType: codePartDjType,
         );
 

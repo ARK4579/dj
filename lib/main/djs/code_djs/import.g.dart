@@ -8,7 +8,7 @@ part of 'import.dart';
 
 ImportDj _$ImportDjFromJson(Map<String, dynamic> json) {
   return ImportDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     importStr: json['importStr'] as String,
     isPackage: json['isPackage'] as bool,
     isFlutter: json['isFlutter'] as bool,
@@ -28,7 +28,7 @@ Map<String, dynamic> _$ImportDjToJson(ImportDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   val['importStr'] = instance.importStr;

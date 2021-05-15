@@ -8,7 +8,7 @@ part of 'field.dart';
 
 FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
   return FieldDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     name: json['name'] as String?,
     dataType: json['dataType'] as String?,
     safeDataType: json['safeDataType'] as String?,
@@ -35,7 +35,7 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
+  writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   writeNotNull('name', instance.name);

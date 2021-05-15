@@ -19,14 +19,14 @@ enum CodePartDjType {
 
 @JsonSerializable()
 class CodePartDj {
-  @JsonKey(name: 'description')
-  final String? description;
+  @JsonKey(name: 'descriptionDj')
+  final String? descriptionDj;
 
   @JsonKey(name: 'codePartDjType')
   final CodePartDjType? codePartDjType;
 
   const CodePartDj({
-    this.description,
+    this.descriptionDj,
     this.codePartDjType,
   });
 
@@ -63,7 +63,7 @@ class CodePartDj {
   List<String> toCode() {
     var _lines = <String>[];
 
-    _lines += getSingleLineCommentOnMultipleLines(description);
+    _lines += getSingleLineCommentOnMultipleLines(descriptionDj);
 
     return _lines;
   }
