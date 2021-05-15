@@ -11,6 +11,10 @@ FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
     description: json['description'],
     name: json['name'] as String?,
     dataType: json['dataType'] as String?,
+    safeDataType: json['safeDataType'] as String?,
+    safetyDescription: (json['safetyDescription'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
     isFinal: json['isFinal'] as bool?,
     isRequired: json['isRequired'] as bool?,
     isOptional: json['isOptional'] as bool?,
@@ -34,6 +38,8 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
   writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
   writeNotNull('name', instance.name);
   writeNotNull('dataType', instance.dataType);
+  writeNotNull('safeDataType', instance.safeDataType);
+  writeNotNull('safetyDescription', instance.safetyDescription);
   writeNotNull('isFinal', instance.isFinal);
   writeNotNull('isRequired', instance.isRequired);
   writeNotNull('isOptional', instance.isOptional);

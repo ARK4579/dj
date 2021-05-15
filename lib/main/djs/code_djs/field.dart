@@ -11,6 +11,12 @@ class FieldDj extends CodePartDj {
   @JsonKey(name: 'dataType')
   final String? dataType;
 
+  @JsonKey(name: 'safeDataType')
+  final String? safeDataType;
+
+  @JsonKey(name: 'safetyDescription')
+  final List<String>? safetyDescription;
+
   @JsonKey(name: 'isFinal')
   final bool? isFinal;
 
@@ -33,6 +39,8 @@ class FieldDj extends CodePartDj {
     description,
     this.name,
     this.dataType,
+    this.safeDataType,
+    this.safetyDescription,
     this.isFinal = true,
     this.isRequired = true,
     this.isOptional = false,
@@ -51,56 +59,21 @@ class FieldDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$FieldDjToJson(this);
 
   @override
-  List<String> toCode({
-    Map<String, String> djNamesMap = const {},
-  }) {
+  List<String> toCode() {
     var _lines = super.toCode();
 
     if (name == null) return _lines;
 
-    if (dataType != null &&
-        dataType != 'dynamic' &&
-        !djNamesMap.keys.contains(dataType) &&
-        !dataType!.contains('<')) {
-      if (!unKnownDataTypes.contains(dataType)) {
-        unKnownDataTypes.add(dataType!);
-      }
-    }
-
-    var dataTypeLine = 'dynamic';
-    if (dataType != null) {
-      var mappedDataType = djNamesMap[dataType];
-      if (!dataType!.contains('<')) {
-        _lines.add(
-          "// Setting data type of following field to be 'dynamic' instead of",
-        );
-        _lines.add(
-          '// $dataType Because Generics are not handled yet',
-        );
-      } else if (mappedDataType == null) {
-        _lines.add(
-          "// Setting data type of following field to be 'dynamic' instead of",
-        );
-        _lines.add(
-          "// $dataType Because $dataType's Dj Version Not implemented yet",
-        );
-      } else if (hasDefaultValue) {
-        _lines.add(
-          "// Setting data type of following field to be 'dynamic' instead of",
-        );
-        _lines.add(
-          '// $dataType because Non-Dj default value is provided.',
-        );
-      } else if (!dataType!.endsWith('?') && !(isRequired ?? true)) {
-        _lines.add(
-          "// Setting data type of following field to be 'dynamic' instead of",
-        );
-        _lines.add(
-          '// $dataType because for some reason default value is not parsed.',
-        );
-      } else {
-        dataTypeLine = mappedDataType;
-      }
+    late String dataTypeLine;
+    if (safeDataType != null) {
+      dataTypeLine = safeDataType!;
+      (safetyDescription ?? []).forEach((safetyDescriptionLine) {
+        _lines.add(safetyDescriptionLine);
+      });
+    } else if (dataType != null) {
+      dataTypeLine = dataType!;
+    } else {
+      dataTypeLine = 'dynamic';
     }
 
     var fieldLine = '$dataTypeLine $name;';
@@ -120,6 +93,4 @@ class FieldDj extends CodePartDj {
   bool get hasDefaultValue => defaultValue != null;
 
   bool get isPrivate => (name ?? '').startsWith('_');
-
-  static List<String> unKnownDataTypes = [];
 }
