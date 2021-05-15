@@ -39,8 +39,8 @@ class ImportDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$ImportDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var importLine = "import '";
     if (isPackage) {

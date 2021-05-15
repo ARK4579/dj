@@ -26,8 +26,8 @@ class EnumDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$EnumDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     _lines.add('enum $name {');
 

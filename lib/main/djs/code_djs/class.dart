@@ -97,8 +97,8 @@ class ClassDj extends CodePartDj {
   }
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var _jsonSerializable = jsonSerializable ?? false;
 
@@ -110,7 +110,7 @@ class ClassDj extends CodePartDj {
       if (_jsonSerializable) {
         _lines.add("@JsonKey(name: '${field.name}')");
       }
-      _lines += field.lines();
+      _lines += field.toCode();
     });
 
     var baseLine = '';

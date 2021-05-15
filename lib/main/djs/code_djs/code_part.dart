@@ -42,8 +42,6 @@ class CodePartDj {
         return IfElseDj.fromJson(json);
       case CodePartType.Import:
         return ImportDj.fromJson(json);
-      case CodePartType.StatelessWidget:
-        return StatelessWidgetDj.fromJson(json);
       case CodePartType.Return:
         return ReturnDj.fromJson(json);
       case CodePartType.Class:
@@ -62,7 +60,7 @@ class CodePartDj {
 
   Map<String, dynamic> toJson() => _$CodePartDjToJson(this);
 
-  List<String> lines() {
+  List<String> toCode() {
     var _lines = <String>[];
 
     _lines += getSingleLineCommectOnMultipleLines(description);
@@ -72,6 +70,6 @@ class CodePartDj {
 
   @override
   String toString() {
-    return lines().join(' ');
+    return toCode().join(' ');
   }
 }

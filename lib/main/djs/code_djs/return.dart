@@ -23,8 +23,8 @@ class ReturnDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$ReturnDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var returnLine = 'return $returnStr;';
 

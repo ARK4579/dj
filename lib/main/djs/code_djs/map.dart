@@ -34,8 +34,8 @@ class MapDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$MapDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     if (name == null) return _lines;
 

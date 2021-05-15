@@ -39,8 +39,8 @@ class FunctionDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$FunctionDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var argsLine = args?.map((arg) => '${arg.toString()}').join(', ') ?? '';
 

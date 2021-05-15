@@ -35,8 +35,8 @@ class FunctionCallDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$FunctionCallDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var argsLine = arg == null
         ? args?.map((arg) => '${arg.toString()}').join(', ') ?? ''

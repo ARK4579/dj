@@ -23,8 +23,8 @@ class IfElseDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$IfElseDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var i = 0;
     conditions?.forEach((condition) {
