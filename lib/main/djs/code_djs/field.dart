@@ -63,14 +63,21 @@ class FieldDj extends CodePartDj {
         !djNamesMap.keys.contains(dataType) &&
         !dataType!.contains('<')) {
       if (!unKnownDataTypes.contains(dataType)) {
-        // print('$dataType in $name');
         unKnownDataTypes.add(dataType!);
       }
     }
 
     var dataTypeLine = 'dynamic';
-    if (dataType != null && !dataType!.contains('<')) {
-      if (djNamesMap[dataType] == null) {
+    if (dataType != null) {
+      var mappedDataType = djNamesMap[dataType];
+      if (!dataType!.contains('<')) {
+        _lines.add(
+          "// Setting data type of following field to be 'dynamic' instead of",
+        );
+        _lines.add(
+          '// $dataType Because Generics are not handled yet',
+        );
+      } else if (mappedDataType == null) {
         _lines.add(
           "// Setting data type of following field to be 'dynamic' instead of",
         );
@@ -84,8 +91,15 @@ class FieldDj extends CodePartDj {
         _lines.add(
           '// $dataType because Non-Dj default value is provided.',
         );
+      } else if (!dataType!.endsWith('?') && !(isRequired ?? true)) {
+        _lines.add(
+          "// Setting data type of following field to be 'dynamic' instead of",
+        );
+        _lines.add(
+          '// $dataType because for some reason default value is not parsed.',
+        );
       } else {
-        dataTypeLine = djNamesMap[dataType]!;
+        dataTypeLine = mappedDataType;
       }
     }
     // var dataTypeLine = dataType == null
@@ -109,6 +123,8 @@ class FieldDj extends CodePartDj {
   //
 
   bool get hasDefaultValue => defaultValue != null;
+
+  bool get isPrivate => (name ?? '').startsWith('_');
 
   static List<String> unKnownDataTypes = [];
 }
