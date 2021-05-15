@@ -11,10 +11,10 @@ class ReturnDj extends CodePartDj {
   ReturnDj({
     description,
     this.returnStr = '',
-    CodePartType type = CodePartType.Return,
+    CodePartDjType codePartDjType = CodePartDjType.Return,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory ReturnDj.fromJson(Map<String, dynamic> json) =>

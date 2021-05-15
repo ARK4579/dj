@@ -11,10 +11,10 @@ class IfElseDj extends CodePartDj {
   IfElseDj({
     description,
     this.conditions,
-    CodePartType type = CodePartType.IfElse,
+    CodePartDjType codePartDjType = CodePartDjType.IfElse,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory IfElseDj.fromJson(Map<String, dynamic> json) =>

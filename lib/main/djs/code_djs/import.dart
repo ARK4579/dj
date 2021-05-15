@@ -27,10 +27,10 @@ class ImportDj extends CodePartDj {
     this.isFlutter = false,
     this.isFile = false,
     this.isPart = false,
-    CodePartType type = CodePartType.Import,
+    CodePartDjType codePartDjType = CodePartDjType.Import,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory ImportDj.fromJson(Map<String, dynamic> json) =>

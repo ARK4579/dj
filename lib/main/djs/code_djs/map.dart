@@ -23,10 +23,10 @@ class MapDj extends CodePartDj {
     this.keyDataType,
     this.valueDataType,
     this.values,
-    CodePartType type = CodePartType.Map,
+    CodePartDjType codePartDjType = CodePartDjType.Map,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory MapDj.fromJson(Map<String, dynamic> json) => _$MapDjFromJson(json);

@@ -31,10 +31,10 @@ class ClassDj extends CodePartDj {
     this.isExtends,
     this.isImplements,
     this.jsonSerializable,
-    CodePartType type = CodePartType.Class,
+    CodePartDjType codePartDjType = CodePartDjType.Class,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory ClassDj.fromJson(Map<String, dynamic> json) =>

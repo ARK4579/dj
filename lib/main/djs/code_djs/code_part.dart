@@ -3,7 +3,7 @@ import 'package:dj/main/main.dart';
 
 part 'code_part.g.dart';
 
-enum CodePartType {
+enum CodePartDjType {
   FunctionCall,
   Function,
   IfElse,
@@ -22,39 +22,39 @@ class CodePartDj {
   @JsonKey(name: 'description')
   final String? description;
 
-  @JsonKey(name: 'type')
-  final CodePartType? type;
+  @JsonKey(name: 'codePartDjType')
+  final CodePartDjType? codePartDjType;
 
   const CodePartDj({
     this.description,
-    this.type,
+    this.codePartDjType,
   });
 
   factory CodePartDj.fromJson(Map<String, dynamic> json) {
     var codePartDj = _$CodePartDjFromJson(json);
 
-    switch (codePartDj.type) {
-      case CodePartType.Function:
+    switch (codePartDj.codePartDjType) {
+      case CodePartDjType.Function:
         return FunctionDj.fromJson(json);
-      case CodePartType.FunctionCall:
+      case CodePartDjType.FunctionCall:
         return FunctionCallDj.fromJson(json);
-      case CodePartType.IfElse:
+      case CodePartDjType.IfElse:
         return IfElseDj.fromJson(json);
-      case CodePartType.Import:
+      case CodePartDjType.Import:
         return ImportDj.fromJson(json);
-      case CodePartType.Return:
+      case CodePartDjType.Return:
         return ReturnDj.fromJson(json);
-      case CodePartType.Class:
+      case CodePartDjType.Class:
         return ClassDj.fromJson(json);
-      case CodePartType.Field:
+      case CodePartDjType.Field:
         return FieldDj.fromJson(json);
-      case CodePartType.Enum:
+      case CodePartDjType.Enum:
         return EnumDj.fromJson(json);
-      case CodePartType.Map:
+      case CodePartDjType.Map:
         return MapDj.fromJson(json);
       default:
         throw Exception(
-            'CodePartDj.fromJson not handled for ${codePartDj.type}');
+            'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}');
     }
   }
 
@@ -63,7 +63,7 @@ class CodePartDj {
   List<String> toCode() {
     var _lines = <String>[];
 
-    _lines += getSingleLineCommectOnMultipleLines(description);
+    _lines += getSingleLineCommentOnMultipleLines(description);
 
     return _lines;
   }

@@ -23,10 +23,10 @@ class FunctionCallDj extends CodePartDj {
     required this.name,
     this.arg,
     this.args,
-    CodePartType type = CodePartType.FunctionCall,
+    CodePartDjType codePartDjType = CodePartDjType.FunctionCall,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory FunctionCallDj.fromJson(Map<String, dynamic> json) =>

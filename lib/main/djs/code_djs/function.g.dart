@@ -18,7 +18,8 @@ FunctionDj _$FunctionDjFromJson(Map<String, dynamic> json) {
     bodyCodeParts: (json['bodyCodeParts'] as List<dynamic>?)
         ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
         .toList(),
-    type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
+    codePartDjType:
+        _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
@@ -32,7 +33,8 @@ Map<String, dynamic> _$FunctionDjToJson(FunctionDj instance) {
   }
 
   writeNotNull('description', instance.description);
-  writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
+  writeNotNull(
+      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   val['outputStr'] = _$VariableTypeEnumMap[instance.outputType];
   val['name'] = instance.name;
   writeNotNull('args', instance.args?.map((e) => e.toJson()).toList());
@@ -74,15 +76,15 @@ const _$VariableTypeEnumMap = {
   VariableType.StringNullable: 'StringNullable',
 };
 
-const _$CodePartTypeEnumMap = {
-  CodePartType.FunctionCall: 'FunctionCall',
-  CodePartType.Function: 'Function',
-  CodePartType.IfElse: 'IfElse',
-  CodePartType.Import: 'Import',
-  CodePartType.StatelessWidget: 'StatelessWidget',
-  CodePartType.Return: 'Return',
-  CodePartType.Class: 'Class',
-  CodePartType.Field: 'Field',
-  CodePartType.Enum: 'Enum',
-  CodePartType.Map: 'Map',
+const _$CodePartDjTypeEnumMap = {
+  CodePartDjType.FunctionCall: 'FunctionCall',
+  CodePartDjType.Function: 'Function',
+  CodePartDjType.IfElse: 'IfElse',
+  CodePartDjType.Import: 'Import',
+  CodePartDjType.StatelessWidget: 'StatelessWidget',
+  CodePartDjType.Return: 'Return',
+  CodePartDjType.Class: 'Class',
+  CodePartDjType.Field: 'Field',
+  CodePartDjType.Enum: 'Enum',
+  CodePartDjType.Map: 'Map',
 };

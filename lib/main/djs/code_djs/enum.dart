@@ -15,10 +15,10 @@ class EnumDj extends CodePartDj {
     description,
     this.name,
     this.values,
-    CodePartType type = CodePartType.Enum,
+    CodePartDjType codePartDjType = CodePartDjType.Enum,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory EnumDj.fromJson(Map<String, dynamic> json) => _$EnumDjFromJson(json);

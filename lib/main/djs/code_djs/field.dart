@@ -47,10 +47,10 @@ class FieldDj extends CodePartDj {
     this.superOnly = false,
     this.isStatic = false,
     this.defaultValue,
-    CodePartType type = CodePartType.Field,
+    CodePartDjType codePartDjType = CodePartDjType.Field,
   }) : super(
           description: description,
-          type: type,
+          codePartDjType: codePartDjType,
         );
 
   factory FieldDj.fromJson(Map<String, dynamic> json) =>
