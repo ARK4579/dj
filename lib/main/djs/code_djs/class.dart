@@ -104,7 +104,9 @@ class ClassDj extends CodePartDj {
 
     if (name == null) return _lines;
 
-    fields?.where((field) => !(field.superOnly ?? false)).forEach((field) {
+    fields
+        ?.where((field) => (!(field.superOnly ?? false) && !field.isPrivate))
+        .forEach((field) {
       if (_jsonSerializable) {
         _lines.add("@JsonKey(name: '${field.name}')");
       }
