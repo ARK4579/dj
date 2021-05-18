@@ -8,3 +8,4 @@ export 'field.dart';
 export 'class.dart';
 export 'enum.dart';
 export 'map.dart';
+export 'empty_line.dart';

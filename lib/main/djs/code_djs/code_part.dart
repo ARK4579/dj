@@ -14,6 +14,7 @@ enum CodePartDjType {
   Field,
   Enum,
   Map,
+  EmptyLine,
   // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
@@ -52,9 +53,12 @@ class CodePartDj {
         return EnumDj.fromJson(json);
       case CodePartDjType.Map:
         return MapDj.fromJson(json);
+      case CodePartDjType.EmptyLine:
+        return EmptyLineDj.fromJson(json);
       default:
         throw Exception(
-            'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}');
+          'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}',
+        );
     }
   }
 

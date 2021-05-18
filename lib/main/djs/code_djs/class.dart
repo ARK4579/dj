@@ -104,6 +104,16 @@ class ClassDj extends CodePartDj {
 
     if (name == null) return _lines;
 
+    var baseLine = '';
+    if ((isExtends ?? false) && (baseName ?? '').isNotEmpty) {
+      baseLine = 'extends $baseName';
+    }
+    var classStartLine = [
+      if (_jsonSerializable) '@JsonSerializable()',
+      'class $name $baseLine {'
+    ];
+    _lines += classStartLine;
+
     fields
         ?.where((field) => (!(field.superOnly ?? false) && !field.isPrivate))
         .forEach((field) {
@@ -111,20 +121,13 @@ class ClassDj extends CodePartDj {
         _lines.add("@JsonKey(name: '${field.name}')");
       }
       _lines += field.toCode();
+      _lines.add('');
     });
 
-    var baseLine = '';
-    if ((isExtends ?? false) && (baseName ?? '').isNotEmpty) {
-      baseLine = 'extends $baseName';
-    }
-
-    var classStartLine = [
-      if (_jsonSerializable) '@JsonSerializable()',
-      'class $name $baseLine {'
-    ];
-    var classEndLine = '}';
+    _lines = _lines + _constructorCode();
 
     if (jsonSerializable ?? false) {
+      _lines.add('');
       var jsFromLine1 = '$name.fromJson(Map<String, dynamic> json)';
       var jsFromLine2 = '_\$${name}FromJson(json);';
       var jsFromLine = 'factory $jsFromLine1 => $jsFromLine2';
@@ -132,13 +135,14 @@ class ClassDj extends CodePartDj {
     }
 
     if (jsonSerializable ?? false) {
+      _lines.add('');
       _lines.add('@override');
       _lines.add('Map<String, dynamic> toJson() => _\$${name}ToJson(this);');
     }
 
-    _lines = _lines + _constructorCode();
+    // class end line
+    _lines.add('}');
 
-    _lines = classStartLine + _lines + [classEndLine];
     return _lines;
   }
 }

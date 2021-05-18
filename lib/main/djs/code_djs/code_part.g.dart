@@ -77,4 +77,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.Field: 'Field',
   CodePartDjType.Enum: 'Enum',
   CodePartDjType.Map: 'Map',
+  CodePartDjType.EmptyLine: 'EmptyLine',
 };
