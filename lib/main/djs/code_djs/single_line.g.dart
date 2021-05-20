@@ -1,31 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'class.dart';
+part of 'single_line.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ClassDj _$ClassDjFromJson(Map<String, dynamic> json) {
-  return ClassDj(
+SingleLineDj _$SingleLineDjFromJson(Map<String, dynamic> json) {
+  return SingleLineDj(
     descriptionDj: json['descriptionDj'],
-    name: json['name'] as String?,
-    baseName: json['baseName'] as String?,
-    fields: (json['fields'] as List<dynamic>?)
-        ?.map((e) => FieldDj.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    isExtends: json['isExtends'] as bool?,
-    isImplements: json['isImplements'] as bool?,
-    jsonSerializable: json['jsonSerializable'] as bool?,
-    functions: (json['functions'] as List<dynamic>?)
-        ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    line: json['line'] as String?,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
+Map<String, dynamic> _$SingleLineDjToJson(SingleLineDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -37,14 +27,7 @@ Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
-  writeNotNull('name', instance.name);
-  writeNotNull('baseName', instance.baseName);
-  writeNotNull('fields', instance.fields?.map((e) => e.toJson()).toList());
-  writeNotNull('isExtends', instance.isExtends);
-  writeNotNull('isImplements', instance.isImplements);
-  writeNotNull('jsonSerializable', instance.jsonSerializable);
-  writeNotNull(
-      'functions', instance.functions?.map((e) => e.toJson()).toList());
+  writeNotNull('line', instance.line);
   return val;
 }
 

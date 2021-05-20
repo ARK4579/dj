@@ -23,6 +23,9 @@ class ClassDj extends CodePartDj {
   @JsonKey(name: 'jsonSerializable')
   final bool? jsonSerializable;
 
+  @JsonKey(name: 'functions')
+  final List<CodePartDj>? functions;
+
   ClassDj({
     descriptionDj,
     this.name,
@@ -31,6 +34,7 @@ class ClassDj extends CodePartDj {
     this.isExtends,
     this.isImplements,
     this.jsonSerializable,
+    this.functions,
     CodePartDjType codePartDjType = CodePartDjType.Class,
   }) : super(
           descriptionDj: descriptionDj,
@@ -91,6 +95,13 @@ class ClassDj extends CodePartDj {
         }
       });
       codeLines.add(');');
+    }
+
+    if (functions != null) {
+      codeLines.add('\n');
+      functions?.forEach((function) {
+        codeLines += function.toCode();
+      });
     }
 
     return codeLines;

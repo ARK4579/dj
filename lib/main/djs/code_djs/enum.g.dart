@@ -72,4 +72,6 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.Enum: 'Enum',
   CodePartDjType.Map: 'Map',
   CodePartDjType.EmptyLine: 'EmptyLine',
+  CodePartDjType.VariableDeclaration: 'VariableDeclaration',
+  CodePartDjType.SingleLine: 'SingleLine',
 };

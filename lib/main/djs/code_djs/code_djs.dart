@@ -9,3 +9,5 @@ export 'class.dart';
 export 'enum.dart';
 export 'map.dart';
 export 'empty_line.dart';
+export 'variable_declaration.dart';
+export 'single_line.dart';

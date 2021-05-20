@@ -9,7 +9,7 @@ part of 'function.dart';
 FunctionDj _$FunctionDjFromJson(Map<String, dynamic> json) {
   return FunctionDj(
     descriptionDj: json['descriptionDj'],
-    outputType: _$enumDecode(_$VariableTypeEnumMap, json['outputStr']),
+    outputType: _$enumDecodeNullable(_$VariableTypeEnumMap, json['outputType']),
     name: json['name'] as String,
     args: (json['args'] as List<dynamic>?)
         ?.map((e) => FunctionArg.fromJson(e as Map<String, dynamic>))
@@ -17,6 +17,9 @@ FunctionDj _$FunctionDjFromJson(Map<String, dynamic> json) {
     isAsync: json['isAsync'] as bool,
     bodyCodeParts: (json['bodyCodeParts'] as List<dynamic>?)
         ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    annotations: (json['annotations'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
@@ -35,12 +38,13 @@ Map<String, dynamic> _$FunctionDjToJson(FunctionDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
-  val['outputStr'] = _$VariableTypeEnumMap[instance.outputType];
+  writeNotNull('outputType', _$VariableTypeEnumMap[instance.outputType]);
   val['name'] = instance.name;
   writeNotNull('args', instance.args?.map((e) => e.toJson()).toList());
   val['isAsync'] = instance.isAsync;
   writeNotNull(
       'bodyCodeParts', instance.bodyCodeParts?.map((e) => e.toJson()).toList());
+  writeNotNull('annotations', instance.annotations);
   return val;
 }
 
@@ -70,10 +74,24 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
 const _$VariableTypeEnumMap = {
   VariableType.Void: 'Void',
   VariableType.String: 'String',
   VariableType.StringNullable: 'StringNullable',
+  VariableType.ListString: 'ListString',
+  VariableType.ListStringNullable: 'ListStringNullable',
+  VariableType.Var: 'Var',
 };
 
 const _$CodePartDjTypeEnumMap = {
@@ -88,4 +106,6 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.Enum: 'Enum',
   CodePartDjType.Map: 'Map',
   CodePartDjType.EmptyLine: 'EmptyLine',
+  CodePartDjType.VariableDeclaration: 'VariableDeclaration',
+  CodePartDjType.SingleLine: 'SingleLine',
 };

@@ -1,31 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'class.dart';
+part of 'variable_declaration.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ClassDj _$ClassDjFromJson(Map<String, dynamic> json) {
-  return ClassDj(
+VariableDeclarationDj _$VariableDeclarationDjFromJson(
+    Map<String, dynamic> json) {
+  return VariableDeclarationDj(
     descriptionDj: json['descriptionDj'],
+    dataType: _$enumDecodeNullable(_$VariableTypeEnumMap, json['dataType']),
     name: json['name'] as String?,
-    baseName: json['baseName'] as String?,
-    fields: (json['fields'] as List<dynamic>?)
-        ?.map((e) => FieldDj.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    isExtends: json['isExtends'] as bool?,
-    isImplements: json['isImplements'] as bool?,
-    jsonSerializable: json['jsonSerializable'] as bool?,
-    functions: (json['functions'] as List<dynamic>?)
-        ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    initialValue: json['initialValue'] as String?,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
+Map<String, dynamic> _$VariableDeclarationDjToJson(
+    VariableDeclarationDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -37,14 +31,9 @@ Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  writeNotNull('dataType', _$VariableTypeEnumMap[instance.dataType]);
   writeNotNull('name', instance.name);
-  writeNotNull('baseName', instance.baseName);
-  writeNotNull('fields', instance.fields?.map((e) => e.toJson()).toList());
-  writeNotNull('isExtends', instance.isExtends);
-  writeNotNull('isImplements', instance.isImplements);
-  writeNotNull('jsonSerializable', instance.jsonSerializable);
-  writeNotNull(
-      'functions', instance.functions?.map((e) => e.toJson()).toList());
+  writeNotNull('initialValue', instance.initialValue);
   return val;
 }
 
@@ -73,6 +62,26 @@ K _$enumDecode<K, V>(
     },
   ).key;
 }
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$VariableTypeEnumMap = {
+  VariableType.Void: 'Void',
+  VariableType.String: 'String',
+  VariableType.StringNullable: 'StringNullable',
+  VariableType.ListString: 'ListString',
+  VariableType.ListStringNullable: 'ListStringNullable',
+  VariableType.Var: 'Var',
+};
 
 const _$CodePartDjTypeEnumMap = {
   CodePartDjType.FunctionCall: 'FunctionCall',

@@ -5,8 +5,8 @@ part 'function.g.dart';
 
 @JsonSerializable()
 class FunctionDj extends CodePartDj {
-  @JsonKey(name: 'outputStr')
-  final VariableType outputType;
+  @JsonKey(name: 'outputType')
+  final VariableType? outputType;
 
   @JsonKey(name: 'name')
   final String name;
@@ -20,13 +20,17 @@ class FunctionDj extends CodePartDj {
   @JsonKey(name: 'bodyCodeParts')
   final List<CodePartDj>? bodyCodeParts;
 
+  @JsonKey(name: 'annotations')
+  final List<String>? annotations;
+
   FunctionDj({
     descriptionDj,
-    required this.outputType,
+    this.outputType,
     required this.name,
     this.args,
     this.isAsync = false,
     this.bodyCodeParts,
+    this.annotations,
     CodePartDjType codePartDjType = CodePartDjType.Function,
   }) : super(
           descriptionDj: descriptionDj,
@@ -44,7 +48,9 @@ class FunctionDj extends CodePartDj {
 
     var argsLine = args?.map((arg) => '${arg.toString()}').join(', ') ?? '';
 
-    var callLine = '$name($argsLine)';
+    var callLine = '';
+
+    callLine += '$name($argsLine)';
 
     if (isAsync) {
       callLine += ' async ';
@@ -55,9 +61,17 @@ class FunctionDj extends CodePartDj {
       body += codePart.toString();
     });
 
-    var outputStr = variableTypeToString(outputType);
+    callLine = '$callLine { $body }';
 
-    callLine = '$outputStr $callLine { $body }';
+    if (outputType != null) {
+      callLine = variableTypeToString(outputType!) + ' ' + callLine;
+    }
+
+    if (annotations != null) {
+      annotations!.forEach((annotation) {
+        callLine = '@$annotation\n' + callLine;
+      });
+    }
 
     _lines.add(callLine);
     return _lines;

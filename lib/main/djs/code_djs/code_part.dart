@@ -15,6 +15,8 @@ enum CodePartDjType {
   Enum,
   Map,
   EmptyLine,
+  VariableDeclaration,
+  SingleLine,
   // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
@@ -55,6 +57,10 @@ class CodePartDj {
         return MapDj.fromJson(json);
       case CodePartDjType.EmptyLine:
         return EmptyLineDj.fromJson(json);
+      case CodePartDjType.VariableDeclaration:
+        return VariableDeclarationDj.fromJson(json);
+      case CodePartDjType.SingleLine:
+        return SingleLineDj.fromJson(json);
       default:
         throw Exception(
           'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}',
