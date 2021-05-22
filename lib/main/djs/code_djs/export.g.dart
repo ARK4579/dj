@@ -1,26 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'map.dart';
+part of 'export.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MapDj _$MapDjFromJson(Map<String, dynamic> json) {
-  return MapDj(
+ExportDj _$ExportDjFromJson(Map<String, dynamic> json) {
+  return ExportDj(
     descriptionDj: json['descriptionDj'],
-    name: json['name'] as String?,
-    keyDataType: json['keyDataType'] as String?,
-    valueDataType: json['valueDataType'] as String?,
-    values: (json['values'] as Map<String, dynamic>?)?.map(
-      (k, e) => MapEntry(k, e as String),
-    ),
+    exportStr: json['exportStr'] as String?,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$MapDjToJson(MapDj instance) {
+Map<String, dynamic> _$ExportDjToJson(ExportDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -32,10 +27,7 @@ Map<String, dynamic> _$MapDjToJson(MapDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
-  writeNotNull('name', instance.name);
-  writeNotNull('keyDataType', instance.keyDataType);
-  writeNotNull('valueDataType', instance.valueDataType);
-  writeNotNull('values', instance.values);
+  writeNotNull('exportStr', instance.exportStr);
   return val;
 }
 

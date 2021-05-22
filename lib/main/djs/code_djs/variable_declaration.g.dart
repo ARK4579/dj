@@ -97,4 +97,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.EmptyLine: 'EmptyLine',
   CodePartDjType.VariableDeclaration: 'VariableDeclaration',
   CodePartDjType.SingleLine: 'SingleLine',
+  CodePartDjType.Export: 'Export',
 };

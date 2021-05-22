@@ -64,17 +64,10 @@ class FieldDj extends CodePartDj {
 
     if (name == null) return _lines;
 
-    late String dataTypeLine;
-    if (safeDataType != null) {
-      dataTypeLine = safeDataType!;
-      (safetyDescription ?? []).forEach((safetyDescriptionLine) {
-        _lines.add(safetyDescriptionLine);
-      });
-    } else if (dataType != null) {
-      dataTypeLine = dataType!;
-    } else {
-      dataTypeLine = 'dynamic';
-    }
+    (safetyDescription ?? []).forEach((safetyDescriptionLine) {
+      _lines.add(safetyDescriptionLine);
+    });
+    var dataTypeLine = appliedDataType;
 
     var fieldLine = '$dataTypeLine $name;';
 
@@ -89,6 +82,18 @@ class FieldDj extends CodePartDj {
   //
   // Getters
   //
+
+  String get appliedDataType {
+    late String dataTypeLine;
+    if (safeDataType != null) {
+      dataTypeLine = safeDataType!;
+    } else if (dataType != null) {
+      dataTypeLine = dataType!;
+    } else {
+      dataTypeLine = 'dynamic';
+    }
+    return dataTypeLine;
+  }
 
   bool get hasDefaultValue => defaultValue != null;
 

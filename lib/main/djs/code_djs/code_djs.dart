@@ -11,3 +11,4 @@ export 'map.dart';
 export 'empty_line.dart';
 export 'variable_declaration.dart';
 export 'single_line.dart';
+export 'export.dart';

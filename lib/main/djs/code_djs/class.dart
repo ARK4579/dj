@@ -56,22 +56,20 @@ class ClassDj extends CodePartDj {
     fields?.forEach((field) {
       String? comment;
       var fieldLine = '${field.name}';
-      if (field.hasDefaultValue) {
-        comment = 'ignoring defaultValue ${field.defaultValue}';
-        if (field.superOnly ?? false) {
-          superOnlyFields.add(field);
-          if (field.name == 'baseWidgetDjType') {
-            fieldLine = '$fieldLine = ${field.defaultValue}';
-            comment = null;
-          } else {
-            fieldLine = '$fieldLine';
-          }
+      if (field.superOnly ?? false) {
+        superOnlyFields.add(field);
+        if (field.defaultValue != null) {
+          fieldLine = '$fieldLine = ${field.defaultValue}';
         } else {
-          fieldLine = 'this.$fieldLine';
+          fieldLine = '$fieldLine';
         }
+      } else if (field.hasDefaultValue) {
+        comment = 'ignoring defaultValue ${field.defaultValue}';
+        fieldLine = 'this.$fieldLine';
       } else {
         fieldLine = 'this.$fieldLine';
-        if (field.isRequired ?? false) {
+        if ((field.isRequired ?? false) &&
+            (field.appliedDataType != 'dynamic')) {
           fieldLine = 'required $fieldLine';
         }
       }
@@ -89,10 +87,7 @@ class ClassDj extends CodePartDj {
     } else {
       codeLines.add('}) : super(');
       superOnlyFields.forEach((field) {
-        // Ignoring Constructor-Only Fields for Now!
-        if (field.name == 'baseWidgetDjType') {
-          codeLines.add('${field.name}:${field.name},');
-        }
+        codeLines.add('${field.name}:${field.name},');
       });
       codeLines.add(');');
     }
