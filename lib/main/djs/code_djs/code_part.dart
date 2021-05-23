@@ -18,6 +18,7 @@ enum CodePartDjType {
   VariableDeclaration,
   SingleLine,
   Export,
+  BaseWidget,
   // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
@@ -64,6 +65,8 @@ class CodePartDj {
         return SingleLineDj.fromJson(json);
       case CodePartDjType.Export:
         return ExportDj.fromJson(json);
+      case CodePartDjType.BaseWidget:
+        return BaseWidgetDj.fromJson(json);
       default:
         throw Exception(
           'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}',

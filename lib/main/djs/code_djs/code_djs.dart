@@ -12,3 +12,5 @@ export 'empty_line.dart';
 export 'variable_declaration.dart';
 export 'single_line.dart';
 export 'export.dart';
+export 'base_widget_dj.dart';
+export 'manual_widget_dj.dart';

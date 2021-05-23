@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'export.dart';
+part of 'base_widget_dj.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ExportDj _$ExportDjFromJson(Map<String, dynamic> json) {
-  return ExportDj(
+BaseWidgetDj _$BaseWidgetDjFromJson(Map<String, dynamic> json) {
+  return BaseWidgetDj(
+    baseWidgetDjType: json['baseWidgetDjType'] as String,
     descriptionDj: json['descriptionDj'],
-    exportStr: json['exportStr'] as String?,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$ExportDjToJson(ExportDj instance) {
+Map<String, dynamic> _$BaseWidgetDjToJson(BaseWidgetDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -27,7 +27,7 @@ Map<String, dynamic> _$ExportDjToJson(ExportDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
-  writeNotNull('exportStr', instance.exportStr);
+  val['baseWidgetDjType'] = instance.baseWidgetDjType;
   return val;
 }
 
