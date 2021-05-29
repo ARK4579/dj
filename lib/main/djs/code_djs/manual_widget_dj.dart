@@ -69,7 +69,7 @@ class ManualWidgetDj extends BaseWidgetDj {
     args?.forEach((key, value) {
       var valueString = getValueString(value);
       if (valueString != null) {
-        codeLines.add('$key:$valueString');
+        codeLines.add('$key:$valueString,');
       }
     });
 
