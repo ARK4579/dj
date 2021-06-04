@@ -3,6 +3,6 @@ dynamic dynamicParameterParser(dynamic parameter) {
     case String:
       return '\'$parameter\'';
     default:
+      return parameter;
   }
-  return parameter;
 }
