@@ -15,13 +15,13 @@ void main() {
             // Adding this line for demonstration only!
             ImportDj(importStr: 'package:io/io.dart'),
             FunctionDj(
-              description: 'Main entry point to this file!',
+              descriptionDj: 'Main entry point to this file!',
               outputType: VariableType.Void,
               name: 'main',
               bodyCodeParts: [
                 FunctionCallDj(
                   name: 'print',
-                  args: ["'Hellow World!'"],
+                  args: ["'Hello World!'"],
                 ),
               ],
             ),

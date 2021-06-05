@@ -1,4 +1,4 @@
-List<String> getSingleLineCommectOnMultipleLines(String? line) {
+List<String> getSingleLineCommentOnMultipleLines(String? line) {
   var comments = <String>[];
 
   if (line != null) {

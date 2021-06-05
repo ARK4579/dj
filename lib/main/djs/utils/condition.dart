@@ -66,7 +66,7 @@ class Condition {
       conditionLine = '$conditionLeft';
     }
 
-    var conditionBody = body?.lines().join(' ');
+    var conditionBody = body?.toCode().join(' ');
 
     var condition = '{ $conditionBody }';
 

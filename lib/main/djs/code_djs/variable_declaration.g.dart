@@ -1,23 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'if_else.dart';
+part of 'variable_declaration.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-IfElseDj _$IfElseDjFromJson(Map<String, dynamic> json) {
-  return IfElseDj(
+VariableDeclarationDj _$VariableDeclarationDjFromJson(
+    Map<String, dynamic> json) {
+  return VariableDeclarationDj(
     descriptionDj: json['descriptionDj'],
-    conditions: (json['conditions'] as List<dynamic>?)
-        ?.map((e) => Condition.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    dataType: _$enumDecodeNullable(_$VariableTypeEnumMap, json['dataType']),
+    name: json['name'] as String?,
+    initialValue: json['initialValue'] as String?,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
+Map<String, dynamic> _$VariableDeclarationDjToJson(
+    VariableDeclarationDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -29,8 +31,9 @@ Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
-  writeNotNull(
-      'conditions', instance.conditions?.map((e) => e.toJson()).toList());
+  writeNotNull('dataType', _$VariableTypeEnumMap[instance.dataType]);
+  writeNotNull('name', instance.name);
+  writeNotNull('initialValue', instance.initialValue);
   return val;
 }
 
@@ -59,6 +62,26 @@ K _$enumDecode<K, V>(
     },
   ).key;
 }
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$VariableTypeEnumMap = {
+  VariableType.Void: 'Void',
+  VariableType.String: 'String',
+  VariableType.StringNullable: 'StringNullable',
+  VariableType.ListString: 'ListString',
+  VariableType.ListStringNullable: 'ListStringNullable',
+  VariableType.Var: 'Var',
+};
 
 const _$CodePartDjTypeEnumMap = {
   CodePartDjType.FunctionCall: 'FunctionCall',

@@ -18,15 +18,15 @@ class FunctionCallDj extends CodePartDj {
   final List<String>? args;
 
   FunctionCallDj({
-    description,
+    descriptionDj,
     this.outputStr,
     required this.name,
     this.arg,
     this.args,
-    CodePartType type = CodePartType.FunctionCall,
+    CodePartDjType codePartDjType = CodePartDjType.FunctionCall,
   }) : super(
-          description: description,
-          type: type,
+          descriptionDj: descriptionDj,
+          codePartDjType: codePartDjType,
         );
 
   factory FunctionCallDj.fromJson(Map<String, dynamic> json) =>
@@ -35,8 +35,8 @@ class FunctionCallDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$FunctionCallDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var argsLine = arg == null
         ? args?.map((arg) => '${arg.toString()}').join(', ') ?? ''

@@ -3,62 +3,89 @@ import 'package:dj/main/main.dart';
 
 part 'code_part.g.dart';
 
-enum CodePartType {
+enum CodePartDjType {
   FunctionCall,
   Function,
   IfElse,
   Import,
   StatelessWidget,
   Return,
+  Class,
+  Field,
+  Enum,
+  Map,
+  EmptyLine,
+  VariableDeclaration,
+  SingleLine,
+  Export,
+  BaseWidget,
+  // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
 @JsonSerializable()
 class CodePartDj {
-  @JsonKey(name: 'description')
-  final String? description;
+  @JsonKey(name: 'descriptionDj')
+  final String? descriptionDj;
 
-  @JsonKey(name: 'type')
-  final CodePartType? type;
+  @JsonKey(name: 'codePartDjType')
+  final CodePartDjType? codePartDjType;
 
   const CodePartDj({
-    this.description,
-    this.type,
+    this.descriptionDj,
+    this.codePartDjType,
   });
 
   factory CodePartDj.fromJson(Map<String, dynamic> json) {
     var codePartDj = _$CodePartDjFromJson(json);
 
-    switch (codePartDj.type) {
-      case CodePartType.Function:
+    switch (codePartDj.codePartDjType) {
+      case CodePartDjType.Function:
         return FunctionDj.fromJson(json);
-      case CodePartType.FunctionCall:
+      case CodePartDjType.FunctionCall:
         return FunctionCallDj.fromJson(json);
-      case CodePartType.IfElse:
+      case CodePartDjType.IfElse:
         return IfElseDj.fromJson(json);
-      case CodePartType.Import:
+      case CodePartDjType.Import:
         return ImportDj.fromJson(json);
-      case CodePartType.StatelessWidget:
-        return StatelessWidgetDj.fromJson(json);
-      case CodePartType.Return:
+      case CodePartDjType.Return:
         return ReturnDj.fromJson(json);
+      case CodePartDjType.Class:
+        return ClassDj.fromJson(json);
+      case CodePartDjType.Field:
+        return FieldDj.fromJson(json);
+      case CodePartDjType.Enum:
+        return EnumDj.fromJson(json);
+      case CodePartDjType.Map:
+        return MapDj.fromJson(json);
+      case CodePartDjType.EmptyLine:
+        return EmptyLineDj.fromJson(json);
+      case CodePartDjType.VariableDeclaration:
+        return VariableDeclarationDj.fromJson(json);
+      case CodePartDjType.SingleLine:
+        return SingleLineDj.fromJson(json);
+      case CodePartDjType.Export:
+        return ExportDj.fromJson(json);
+      case CodePartDjType.BaseWidget:
+        return BaseWidgetDj.fromJson(json);
       default:
         throw Exception(
-            'CodePartDj.fromJson not handled for ${codePartDj.type}');
+          'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}',
+        );
     }
   }
 
   Map<String, dynamic> toJson() => _$CodePartDjToJson(this);
 
-  List<String> lines() {
+  List<String> toCode() {
     var _lines = <String>[];
 
-    _lines += getSingleLineCommectOnMultipleLines(description);
+    _lines += getSingleLineCommentOnMultipleLines(descriptionDj);
 
     return _lines;
   }
 
   @override
   String toString() {
-    return lines().join(' ');
+    return toCode().join(' ');
   }
 }
