@@ -1,21 +1,26 @@
+## 0.0.10
+
+- New Djs Added to support generation of flutter widget djs
+- Existing Djs updated to support generation of flutter widget djs
+
 ## 0.0.9
 
-- Seprated creating and writing of FileDj
+- Separated creating and writing of FileDj
 
 ## 0.0.8
 
-- Updated Json Serilizations.
+- Updated Json Serializations.
 - StatelessWidgetDj added to support Stateless Widget blocks in code.
 - ReturnDj added to support return blocks in code.
 
 ## 0.0.7
 
-- Updated Json Serilizations to Remove Bugs.
+- Updated Json Serializations to Remove Bugs.
 - IfElseDj added to support If/Else blocks in code.
 
 ## 0.0.6
 
-- Updated Json Serilizations to Remove Bugs.
+- Updated Json Serializations to Remove Bugs.
 - Updated example.
 
 ## 0.0.5
