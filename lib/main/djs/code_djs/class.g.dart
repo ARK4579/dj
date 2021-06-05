@@ -1,23 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'if_else.dart';
+part of 'class.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-IfElseDj _$IfElseDjFromJson(Map<String, dynamic> json) {
-  return IfElseDj(
+ClassDj _$ClassDjFromJson(Map<String, dynamic> json) {
+  return ClassDj(
     descriptionDj: json['descriptionDj'],
-    conditions: (json['conditions'] as List<dynamic>?)
-        ?.map((e) => Condition.fromJson(e as Map<String, dynamic>))
+    name: json['name'] as String?,
+    baseName: json['baseName'] as String?,
+    fields: (json['fields'] as List<dynamic>?)
+        ?.map((e) => FieldDj.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    isExtends: json['isExtends'] as bool?,
+    isImplements: json['isImplements'] as bool?,
+    jsonSerializable: json['jsonSerializable'] as bool?,
+    functions: (json['functions'] as List<dynamic>?)
+        ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
         .toList(),
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
+Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -29,8 +37,14 @@ Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  writeNotNull('name', instance.name);
+  writeNotNull('baseName', instance.baseName);
+  writeNotNull('fields', instance.fields?.map((e) => e.toJson()).toList());
+  writeNotNull('isExtends', instance.isExtends);
+  writeNotNull('isImplements', instance.isImplements);
+  writeNotNull('jsonSerializable', instance.jsonSerializable);
   writeNotNull(
-      'conditions', instance.conditions?.map((e) => e.toJson()).toList());
+      'functions', instance.functions?.map((e) => e.toJson()).toList());
   return val;
 }
 

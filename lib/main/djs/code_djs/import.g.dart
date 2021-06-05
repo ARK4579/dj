@@ -8,9 +8,14 @@ part of 'import.dart';
 
 ImportDj _$ImportDjFromJson(Map<String, dynamic> json) {
   return ImportDj(
-    description: json['description'],
+    descriptionDj: json['descriptionDj'],
     importStr: json['importStr'] as String,
-    type: _$enumDecode(_$CodePartTypeEnumMap, json['type']),
+    isPackage: json['isPackage'] as bool,
+    isFlutter: json['isFlutter'] as bool,
+    isFile: json['isFile'] as bool,
+    isPart: json['isPart'] as bool,
+    codePartDjType:
+        _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
@@ -23,9 +28,14 @@ Map<String, dynamic> _$ImportDjToJson(ImportDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
-  writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
+  writeNotNull('descriptionDj', instance.descriptionDj);
+  writeNotNull(
+      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   val['importStr'] = instance.importStr;
+  val['isPackage'] = instance.isPackage;
+  val['isFlutter'] = instance.isFlutter;
+  val['isFile'] = instance.isFile;
+  val['isPart'] = instance.isPart;
   return val;
 }
 
@@ -55,11 +65,20 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
-const _$CodePartTypeEnumMap = {
-  CodePartType.FunctionCall: 'FunctionCall',
-  CodePartType.Function: 'Function',
-  CodePartType.IfElse: 'IfElse',
-  CodePartType.Import: 'Import',
-  CodePartType.StatelessWidget: 'StatelessWidget',
-  CodePartType.Return: 'Return',
+const _$CodePartDjTypeEnumMap = {
+  CodePartDjType.FunctionCall: 'FunctionCall',
+  CodePartDjType.Function: 'Function',
+  CodePartDjType.IfElse: 'IfElse',
+  CodePartDjType.Import: 'Import',
+  CodePartDjType.StatelessWidget: 'StatelessWidget',
+  CodePartDjType.Return: 'Return',
+  CodePartDjType.Class: 'Class',
+  CodePartDjType.Field: 'Field',
+  CodePartDjType.Enum: 'Enum',
+  CodePartDjType.Map: 'Map',
+  CodePartDjType.EmptyLine: 'EmptyLine',
+  CodePartDjType.VariableDeclaration: 'VariableDeclaration',
+  CodePartDjType.SingleLine: 'SingleLine',
+  CodePartDjType.Export: 'Export',
+  CodePartDjType.BaseWidget: 'BaseWidget',
 };

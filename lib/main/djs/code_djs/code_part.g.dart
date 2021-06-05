@@ -8,8 +8,9 @@ part of 'code_part.dart';
 
 CodePartDj _$CodePartDjFromJson(Map<String, dynamic> json) {
   return CodePartDj(
-    description: json['description'] as String?,
-    type: _$enumDecodeNullable(_$CodePartTypeEnumMap, json['type']),
+    descriptionDj: json['descriptionDj'] as String?,
+    codePartDjType:
+        _$enumDecodeNullable(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
@@ -22,8 +23,9 @@ Map<String, dynamic> _$CodePartDjToJson(CodePartDj instance) {
     }
   }
 
-  writeNotNull('description', instance.description);
-  writeNotNull('type', _$CodePartTypeEnumMap[instance.type]);
+  writeNotNull('descriptionDj', instance.descriptionDj);
+  writeNotNull(
+      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   return val;
 }
 
@@ -64,11 +66,20 @@ K? _$enumDecodeNullable<K, V>(
   return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$CodePartTypeEnumMap = {
-  CodePartType.FunctionCall: 'FunctionCall',
-  CodePartType.Function: 'Function',
-  CodePartType.IfElse: 'IfElse',
-  CodePartType.Import: 'Import',
-  CodePartType.StatelessWidget: 'StatelessWidget',
-  CodePartType.Return: 'Return',
+const _$CodePartDjTypeEnumMap = {
+  CodePartDjType.FunctionCall: 'FunctionCall',
+  CodePartDjType.Function: 'Function',
+  CodePartDjType.IfElse: 'IfElse',
+  CodePartDjType.Import: 'Import',
+  CodePartDjType.StatelessWidget: 'StatelessWidget',
+  CodePartDjType.Return: 'Return',
+  CodePartDjType.Class: 'Class',
+  CodePartDjType.Field: 'Field',
+  CodePartDjType.Enum: 'Enum',
+  CodePartDjType.Map: 'Map',
+  CodePartDjType.EmptyLine: 'EmptyLine',
+  CodePartDjType.VariableDeclaration: 'VariableDeclaration',
+  CodePartDjType.SingleLine: 'SingleLine',
+  CodePartDjType.Export: 'Export',
+  CodePartDjType.BaseWidget: 'BaseWidget',
 };

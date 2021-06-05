@@ -9,12 +9,12 @@ class IfElseDj extends CodePartDj {
   final List<Condition>? conditions;
 
   IfElseDj({
-    description,
+    descriptionDj,
     this.conditions,
-    CodePartType type = CodePartType.IfElse,
+    CodePartDjType codePartDjType = CodePartDjType.IfElse,
   }) : super(
-          description: description,
-          type: type,
+          descriptionDj: descriptionDj,
+          codePartDjType: codePartDjType,
         );
 
   factory IfElseDj.fromJson(Map<String, dynamic> json) =>
@@ -23,8 +23,8 @@ class IfElseDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$IfElseDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var i = 0;
     conditions?.forEach((condition) {

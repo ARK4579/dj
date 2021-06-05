@@ -70,4 +70,7 @@ const _$VariableTypeEnumMap = {
   VariableType.Void: 'Void',
   VariableType.String: 'String',
   VariableType.StringNullable: 'StringNullable',
+  VariableType.ListString: 'ListString',
+  VariableType.ListStringNullable: 'ListStringNullable',
+  VariableType.Var: 'Var',
 };

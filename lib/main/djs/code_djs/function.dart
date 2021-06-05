@@ -5,8 +5,8 @@ part 'function.g.dart';
 
 @JsonSerializable()
 class FunctionDj extends CodePartDj {
-  @JsonKey(name: 'outputStr')
-  final VariableType outputType;
+  @JsonKey(name: 'outputType')
+  final VariableType? outputType;
 
   @JsonKey(name: 'name')
   final String name;
@@ -20,17 +20,21 @@ class FunctionDj extends CodePartDj {
   @JsonKey(name: 'bodyCodeParts')
   final List<CodePartDj>? bodyCodeParts;
 
+  @JsonKey(name: 'annotations')
+  final List<String>? annotations;
+
   FunctionDj({
-    description,
-    required this.outputType,
+    descriptionDj,
+    this.outputType,
     required this.name,
     this.args,
     this.isAsync = false,
     this.bodyCodeParts,
-    CodePartType type = CodePartType.Function,
+    this.annotations,
+    CodePartDjType codePartDjType = CodePartDjType.Function,
   }) : super(
-          description: description,
-          type: type,
+          descriptionDj: descriptionDj,
+          codePartDjType: codePartDjType,
         );
 
   factory FunctionDj.fromJson(Map<String, dynamic> json) =>
@@ -39,12 +43,14 @@ class FunctionDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$FunctionDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var argsLine = args?.map((arg) => '${arg.toString()}').join(', ') ?? '';
 
-    var callLine = '$name($argsLine)';
+    var callLine = '';
+
+    callLine += '$name($argsLine)';
 
     if (isAsync) {
       callLine += ' async ';
@@ -55,9 +61,17 @@ class FunctionDj extends CodePartDj {
       body += codePart.toString();
     });
 
-    var outputStr = variableTypeToString(outputType);
+    callLine = '$callLine { $body }';
 
-    callLine = '$outputStr $callLine { $body }';
+    if (outputType != null) {
+      callLine = variableTypeToString(outputType!) + ' ' + callLine;
+    }
+
+    if (annotations != null) {
+      annotations!.forEach((annotation) {
+        callLine = '@$annotation\n' + callLine;
+      });
+    }
 
     _lines.add(callLine);
     return _lines;

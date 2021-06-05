@@ -9,12 +9,12 @@ class ReturnDj extends CodePartDj {
   final String returnStr;
 
   ReturnDj({
-    description,
+    descriptionDj,
     this.returnStr = '',
-    CodePartType type = CodePartType.Return,
+    CodePartDjType codePartDjType = CodePartDjType.Return,
   }) : super(
-          description: description,
-          type: type,
+          descriptionDj: descriptionDj,
+          codePartDjType: codePartDjType,
         );
 
   factory ReturnDj.fromJson(Map<String, dynamic> json) =>
@@ -23,8 +23,8 @@ class ReturnDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$ReturnDjToJson(this);
 
   @override
-  List<String> lines() {
-    var _lines = super.lines();
+  List<String> toCode() {
+    var _lines = super.toCode();
 
     var returnLine = 'return $returnStr;';
 
