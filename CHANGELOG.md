@@ -1,3 +1,7 @@
+## 0.0.11
+
+- Simple Minor update
+
 ## 0.0.10
 
 - New Djs Added to support generation of flutter widget djs
