@@ -57,6 +57,8 @@ class ManualWidgetDj extends BaseWidgetDj {
           break;
         case String:
           return "'$value'";
+        case BaseWidgetDj:
+          return value.toString();
         default:
           return '$value';
       }
