@@ -1,3 +1,4 @@
+import 'package:dj/dj.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'djs/djs.dart';
@@ -23,4 +24,20 @@ class BaseDj {
 
   factory BaseDj.fromJson(Map<String, dynamic> json) => _$BaseDjFromJson(json);
   Map<String, dynamic> toJson() => _$BaseDjToJson(this);
+
+  // write generated code to disk
+  bool writeToDisk() {
+    var directoryDjIo = DirectoryDjIo(directoryDj: node);
+
+    try {
+      // start generating code
+      directoryDjIo.create(path);
+    } catch (e) {
+      // something went wrong, returning false to indicate that operation failed
+      return false;
+    }
+
+    // successfully wwritten generated code to disk
+    return true;
+  }
 }
