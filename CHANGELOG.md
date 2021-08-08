@@ -1,3 +1,9 @@
+## 0.0.12
+
+- dj_io moved here
+- improved formatting of generated code using dart_style package
+- added support for json serialization in generated code without using JsonSerializer
+
 ## 0.0.11
 
 - Simple Minor update
