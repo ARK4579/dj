@@ -1,6 +1,6 @@
 name: dj
 description: Auto-Generate Dart and Flutter Code while retaining manual user updates to generated code.
-version: 0.0.13
+version: 0.0.14
 homepage: https://www.ark4579.com
 repository: https://github.com/ARK4579/dj
 issue_tracker: https://github.com/ARK4579/dj/issues
