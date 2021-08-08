@@ -1,6 +1,6 @@
 import 'package:dj/dj.dart';
 
-/// IO Wrapper for BaseDJ from 'dj' library.
+/// to write generated code from Json to disk as actual dart code
 class BaseDjIo {
   final Map<String, dynamic> baseDjMap;
 

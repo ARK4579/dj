@@ -1,19 +1,20 @@
+import 'package:dj/main/djs/code_djs/if_else.dart';
+import 'package:path/path.dart' as p;
+
 import 'package:dj/dj.dart';
 
 void main() {
-  var outputDir = '..\\lib';
+  var outputDir = p.join('example');
 
+  // Using 'dj' library to generate code structure
   var baseDj = BaseDj(
     path: outputDir,
     node: DirectoryDj(
-      name: 'dj_generated',
+      name: 'dj_example_generated',
       nodes: [
         FileDj(
           name: 'hello_world',
           codeParts: [
-            // This import is really not needed in generated file
-            // Adding this line for demonstration only!
-            ImportDj(importStr: 'package:io/io.dart'),
             FunctionDj(
               descriptionDj: 'Main entry point to this file!',
               outputType: VariableType.Void,
@@ -21,9 +22,47 @@ void main() {
               bodyCodeParts: [
                 FunctionCallDj(
                   name: 'print',
-                  args: ["'Hello World!'"],
+                  arg: "'Hello World!'",
+                ),
+                IfElseDj(
+                  conditions: [
+                    Condition(
+                      conditionLeft: '1',
+                      operator: Operator.Equal,
+                      conditionRight: '2',
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its True! 1 equals 2 now!'",
+                      ),
+                    ),
+                    Condition(
+                      conditionLeft: '2',
+                      operator: Operator.Equal,
+                      conditionRight: '1',
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its True! 2 equals 1 now!'",
+                      ),
+                    ),
+                    Condition(
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its False!'",
+                      ),
+                    ),
+                  ],
                 ),
               ],
+            ),
+            ClassDj(
+              name: 'SampleClass',
+              fields: [
+                FieldDj(
+                  name: 'isSample',
+                  defaultValue: true,
+                ),
+              ],
+              selfJsonSerialization: true,
             ),
           ],
         ),
@@ -31,9 +70,6 @@ void main() {
     ),
   );
 
-  // Generating Json for Auto-Generated code
-  var baseDjMap = baseDj.toJson();
-
-  print('Auto-Generated Code:');
-  print(baseDjMap);
+  // Generated code and writting it to disk
+  baseDj.writeToDisk();
 }
