@@ -66,12 +66,16 @@ class ClassDj extends CodePartDj {
     return codeLines;
   }
 
+  List<FieldDj>? get _intrestingFields => fields
+      ?.where((field) =>
+          (!(field.superOnly ?? false) && !field.isPrivate) &&
+          field.name != null)
+      .toList();
+
   List<String> _fieldsCode() {
     var codeLines = <String>[];
 
-    fields
-        ?.where((field) => (!(field.superOnly ?? false) && !field.isPrivate))
-        .forEach((field) {
+    _intrestingFields?.forEach((field) {
       if (jsonSerializable) {
         codeLines.add("@JsonKey(name: '${field.name}')");
       }
@@ -164,11 +168,46 @@ class ClassDj extends CodePartDj {
     return codeLines;
   }
 
-  List<String> _toFromJsonCode() {
+  List<String> _fromJsonCode() {
     var codeLines = <String>[];
 
-    // TODO: Writ ToJson/FromJson code generator !
-    if (selfJsonSerialization) {}
+    // TODO: Writ FromJson code generator !
+    if (selfJsonSerialization) {
+      codeLines.add('');
+      codeLines.add('factory $name.fromJson(Map<String, dynamic> json) {');
+
+      codeLines.add('return $name(');
+      _intrestingFields?.forEach((field) {
+        codeLines
+            .add("${field.name}: json['${field.name}'] ${field.parseAsType},");
+      });
+      codeLines.add('); }');
+    }
+
+    return codeLines;
+  }
+
+  List<String> _toJsonCode() {
+    var codeLines = <String>[];
+
+    if (selfJsonSerialization) {
+      codeLines.add('');
+      codeLines.add('Map<String, dynamic> toJson() {');
+      codeLines.add('final val = <String, dynamic>{};');
+      codeLines.add('');
+      codeLines.add('void writeNotNull(String key, dynamic value) {');
+      codeLines.add('if (value != null) {');
+      codeLines.add('val[key] = value;');
+      codeLines.add('} }');
+      codeLines.add('');
+
+      _intrestingFields?.forEach((field) {
+        codeLines.add("writeNotNull('${field.name}', ${field.name});");
+      });
+
+      codeLines.add('return val;');
+      codeLines.add('}');
+    }
 
     return codeLines;
   }
@@ -184,7 +223,8 @@ class ClassDj extends CodePartDj {
         _constructorCode() +
         _functionsCode() +
         jsonSerializableCode() +
-        _toFromJsonCode() +
+        _fromJsonCode() +
+        _toJsonCode() +
         ['}']; // class end line
 
     return _lines;
