@@ -21,10 +21,13 @@ class ClassDj extends CodePartDj {
   final bool? isImplements;
 
   @JsonKey(name: 'jsonSerializable')
-  final bool? jsonSerializable;
+  final bool jsonSerializable;
 
   @JsonKey(name: 'functions')
   final List<CodePartDj>? functions;
+
+  @JsonKey(name: 'selfJsonSerialization')
+  final bool selfJsonSerialization;
 
   ClassDj({
     descriptionDj,
@@ -33,8 +36,9 @@ class ClassDj extends CodePartDj {
     this.fields,
     this.isExtends,
     this.isImplements,
-    this.jsonSerializable,
+    this.jsonSerializable = false,
     this.functions,
+    this.selfJsonSerialization = false,
     CodePartDjType codePartDjType = CodePartDjType.Class,
   }) : super(
           descriptionDj: descriptionDj,
@@ -45,6 +49,42 @@ class ClassDj extends CodePartDj {
       _$ClassDjFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$ClassDjToJson(this);
+
+  List<String> _nameLineCode() {
+    var codeLines = <String>[];
+
+    var baseLine = '';
+    if ((isExtends ?? false) && (baseName ?? '').isNotEmpty) {
+      baseLine = 'extends $baseName';
+    }
+    var classStartLine = [
+      if (jsonSerializable) '@JsonSerializable()',
+      'class $name $baseLine {'
+    ];
+    codeLines += classStartLine;
+
+    return codeLines;
+  }
+
+  List<FieldDj>? get _intrestingFields => fields
+      ?.where((field) =>
+          (!(field.superOnly ?? false) && !field.isPrivate) &&
+          field.name != null)
+      .toList();
+
+  List<String> _fieldsCode() {
+    var codeLines = <String>[];
+
+    _intrestingFields?.forEach((field) {
+      if (jsonSerializable) {
+        codeLines.add("@JsonKey(name: '${field.name}')");
+      }
+      codeLines += field.toCode();
+      codeLines.add('');
+    });
+
+    return codeLines;
+  }
 
   List<String> _constructorCode() {
     var codeLines = <String>[];
@@ -92,6 +132,12 @@ class ClassDj extends CodePartDj {
       codeLines.add(');');
     }
 
+    return codeLines;
+  }
+
+  List<String> _functionsCode() {
+    var codeLines = <String>[];
+
     if (functions != null) {
       codeLines.add('\n');
       functions?.forEach((function) {
@@ -102,52 +148,84 @@ class ClassDj extends CodePartDj {
     return codeLines;
   }
 
+  List<String> jsonSerializableCode() {
+    var codeLines = <String>[];
+
+    // if we are going to generate to/from json code for this class we won't be
+    // needing JsonSerializable
+    if (jsonSerializable && !selfJsonSerialization) {
+      codeLines.add('');
+      var jsFromLine1 = '$name.fromJson(Map<String, dynamic> json)';
+      var jsFromLine2 = '_\$${name}FromJson(json);';
+      var jsFromLine = 'factory $jsFromLine1 => $jsFromLine2';
+      codeLines.add(jsFromLine);
+
+      codeLines.add('');
+      codeLines.add('@override');
+      codeLines.add('Map<String, dynamic> toJson() => _\$${name}ToJson(this);');
+    }
+
+    return codeLines;
+  }
+
+  List<String> _fromJsonCode() {
+    var codeLines = <String>[];
+
+    // TODO: Writ FromJson code generator !
+    if (selfJsonSerialization) {
+      codeLines.add('');
+      codeLines.add('factory $name.fromJson(Map<String, dynamic> json) {');
+
+      codeLines.add('return $name(');
+      _intrestingFields?.forEach((field) {
+        codeLines
+            .add("${field.name}: json['${field.name}'] ${field.parseAsType},");
+      });
+      codeLines.add('); }');
+    }
+
+    return codeLines;
+  }
+
+  List<String> _toJsonCode() {
+    var codeLines = <String>[];
+
+    if (selfJsonSerialization) {
+      codeLines.add('');
+      codeLines.add('Map<String, dynamic> toJson() {');
+      codeLines.add('final val = <String, dynamic>{};');
+      codeLines.add('');
+      codeLines.add('void writeNotNull(String key, dynamic value) {');
+      codeLines.add('if (value != null) {');
+      codeLines.add('val[key] = value;');
+      codeLines.add('} }');
+      codeLines.add('');
+
+      _intrestingFields?.forEach((field) {
+        codeLines.add("writeNotNull('${field.name}', ${field.name});");
+      });
+
+      codeLines.add('return val;');
+      codeLines.add('}');
+    }
+
+    return codeLines;
+  }
+
   @override
   List<String> toCode() {
     var _lines = super.toCode();
 
-    var _jsonSerializable = jsonSerializable ?? false;
-
     if (name == null) return _lines;
 
-    var baseLine = '';
-    if ((isExtends ?? false) && (baseName ?? '').isNotEmpty) {
-      baseLine = 'extends $baseName';
-    }
-    var classStartLine = [
-      if (_jsonSerializable) '@JsonSerializable()',
-      'class $name $baseLine {'
-    ];
-    _lines += classStartLine;
-
-    fields
-        ?.where((field) => (!(field.superOnly ?? false) && !field.isPrivate))
-        .forEach((field) {
-      if (_jsonSerializable) {
-        _lines.add("@JsonKey(name: '${field.name}')");
-      }
-      _lines += field.toCode();
-      _lines.add('');
-    });
-
-    _lines = _lines + _constructorCode();
-
-    if (jsonSerializable ?? false) {
-      _lines.add('');
-      var jsFromLine1 = '$name.fromJson(Map<String, dynamic> json)';
-      var jsFromLine2 = '_\$${name}FromJson(json);';
-      var jsFromLine = 'factory $jsFromLine1 => $jsFromLine2';
-      _lines.add(jsFromLine);
-    }
-
-    if (jsonSerializable ?? false) {
-      _lines.add('');
-      _lines.add('@override');
-      _lines.add('Map<String, dynamic> toJson() => _\$${name}ToJson(this);');
-    }
-
-    // class end line
-    _lines.add('}');
+    _lines += _nameLineCode() +
+        _fieldsCode() +
+        _constructorCode() +
+        _functionsCode() +
+        jsonSerializableCode() +
+        _fromJsonCode() +
+        _toJsonCode() +
+        ['}']; // class end line
 
     return _lines;
   }
