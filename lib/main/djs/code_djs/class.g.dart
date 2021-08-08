@@ -16,10 +16,11 @@ ClassDj _$ClassDjFromJson(Map<String, dynamic> json) {
         .toList(),
     isExtends: json['isExtends'] as bool?,
     isImplements: json['isImplements'] as bool?,
-    jsonSerializable: json['jsonSerializable'] as bool?,
+    jsonSerializable: json['jsonSerializable'] as bool,
     functions: (json['functions'] as List<dynamic>?)
         ?.map((e) => CodePartDj.fromJson(e as Map<String, dynamic>))
         .toList(),
+    selfJsonSerialization: json['selfJsonSerialization'] as bool,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
@@ -42,9 +43,10 @@ Map<String, dynamic> _$ClassDjToJson(ClassDj instance) {
   writeNotNull('fields', instance.fields?.map((e) => e.toJson()).toList());
   writeNotNull('isExtends', instance.isExtends);
   writeNotNull('isImplements', instance.isImplements);
-  writeNotNull('jsonSerializable', instance.jsonSerializable);
+  val['jsonSerializable'] = instance.jsonSerializable;
   writeNotNull(
       'functions', instance.functions?.map((e) => e.toJson()).toList());
+  val['selfJsonSerialization'] = instance.selfJsonSerialization;
   return val;
 }
 

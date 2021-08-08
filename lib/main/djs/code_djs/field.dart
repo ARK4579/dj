@@ -85,6 +85,7 @@ class FieldDj extends CodePartDj {
 
   String get appliedDataType {
     late String dataTypeLine;
+
     if (safeDataType != null) {
       dataTypeLine = safeDataType!;
     } else if (dataType != null) {
@@ -92,7 +93,20 @@ class FieldDj extends CodePartDj {
     } else {
       dataTypeLine = 'dynamic';
     }
+
     return dataTypeLine;
+  }
+
+  String get parseAsType {
+    var parseAs = '';
+
+    if (dataType != null) {
+      if (['String', 'String?', 'bool', 'bool?'].contains(dataType)) {
+        parseAs = 'as $dataType';
+      }
+    }
+
+    return parseAs;
   }
 
   bool get hasDefaultValue => defaultValue != null;

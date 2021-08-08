@@ -5,6 +5,7 @@ enum VariableType {
   ListString,
   ListStringNullable,
   Var,
+  Dynamic,
   // Don't forget to handle Newly Added Variable Types in function below
 }
 
@@ -22,6 +23,8 @@ String variableTypeToString(VariableType type) {
       return 'List<String>?';
     case VariableType.Var:
       return 'var';
+    case VariableType.Dynamic:
+      return 'dynamic';
     default:
       return 'UNKNOWN_VARIABLE_TYPE';
   }
