@@ -1,3 +1,9 @@
+## 0.0.13
+
+- fixed issues with previous release
+- updated example
+- updated BaseDj to write code directly to disk
+
 ## 0.0.12
 
 - dj_io moved here
