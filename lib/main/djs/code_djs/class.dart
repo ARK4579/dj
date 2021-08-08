@@ -148,12 +148,12 @@ class ClassDj extends CodePartDj {
     return codeLines;
   }
 
-  List<String> jsonSerializableCode() {
+  List<String> _jsonSerializableCode() {
     var codeLines = <String>[];
 
     // if we are going to generate to/from json code for this class we won't be
     // needing JsonSerializable
-    if (jsonSerializable && !selfJsonSerialization) {
+    if (jsonSerializable) {
       codeLines.add('');
       var jsFromLine1 = '$name.fromJson(Map<String, dynamic> json)';
       var jsFromLine2 = '_\$${name}FromJson(json);';
@@ -168,11 +168,11 @@ class ClassDj extends CodePartDj {
     return codeLines;
   }
 
-  List<String> _fromJsonCode() {
+  List<String> _selfJsonSerializableCode() {
     var codeLines = <String>[];
 
-    // TODO: Writ FromJson code generator !
     if (selfJsonSerialization) {
+      // From Json Code
       codeLines.add('');
       codeLines.add('factory $name.fromJson(Map<String, dynamic> json) {');
 
@@ -182,16 +182,10 @@ class ClassDj extends CodePartDj {
             .add("${field.name}: json['${field.name}'] ${field.parseAsType},");
       });
       codeLines.add('); }');
-    }
 
-    return codeLines;
-  }
-
-  List<String> _toJsonCode() {
-    var codeLines = <String>[];
-
-    if (selfJsonSerialization) {
+      // To Json Code
       codeLines.add('');
+      codeLines.add('@override');
       codeLines.add('Map<String, dynamic> toJson() {');
       codeLines.add('final val = <String, dynamic>{};');
       codeLines.add('');
@@ -222,9 +216,8 @@ class ClassDj extends CodePartDj {
         _fieldsCode() +
         _constructorCode() +
         _functionsCode() +
-        jsonSerializableCode() +
-        _fromJsonCode() +
-        _toJsonCode() +
+        _jsonSerializableCode() +
+        _selfJsonSerializableCode() +
         ['}']; // class end line
 
     return _lines;
