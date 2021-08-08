@@ -34,6 +34,5 @@ void writeRawWidgets(
     ),
   );
 
-  var baseDjIo = BaseDjIo(baseDjMap: baseDj.toJson());
-  baseDjIo.write();
+  baseDj.writeToDisk();
 }

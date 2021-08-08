@@ -5,6 +5,7 @@ const String FLUTTER_SDK_LOCATION = 'D:\\src\\flutter';
 void main() {
   var flutterSdkWidgetProcessor = FlutterSdkWidgetProcessor(
     sdkLocation: FLUTTER_SDK_LOCATION,
+    selfJsonSerialization: true,
   );
 
   var rawWidgets = flutterSdkWidgetProcessor.process();

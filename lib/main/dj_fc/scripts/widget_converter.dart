@@ -10,13 +10,14 @@ const String FLUTTER_SDK_LOCATION =
 void main() {
   var flutterSdkWidgetProcessor = FlutterSdkWidgetProcessor(
     sdkLocation: FLUTTER_SDK_LOCATION,
+    selfJsonSerialization: true,
   );
 
   var rawWidgets = flutterSdkWidgetProcessor.process();
 
   var djNamesMap = getDjNamesMap(rawWidgets);
 
-  var outputDir = p.join('..', 'dj_fj', 'lib', 'src', 'widget_djs');
+  var outputDir = p.join('widget_djs');
 
   writeRawWidgets(rawWidgets, djNamesMap, outputDir, 'auto');
 }

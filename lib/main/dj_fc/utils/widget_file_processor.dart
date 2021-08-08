@@ -11,9 +11,11 @@ int fileDebugLvl = KEEP_ONLY_WIDGET == null ? 0 : 6;
 
 class WidgetFileProcessor {
   final FileSystemEntity file;
+  final bool selfJsonSerialization;
 
   WidgetFileProcessor({
     required this.file,
+    this.selfJsonSerialization = false,
   });
 
   static String currentFileName = '';
@@ -168,6 +170,7 @@ class WidgetFileProcessor {
             parameters: parsedParameters,
             name: constructorName!,
             originFilePath: itemPath,
+            selfJsonSerialization: selfJsonSerialization,
           );
 
           rawWidgetDjs.add(rawWidgetDj);
@@ -191,6 +194,7 @@ class WidgetFileProcessor {
             parameterLines,
             itemPath,
             initialIsOptional: initialIsOptional,
+            selfJsonSerialization: selfJsonSerialization,
           ),
         );
 
@@ -217,6 +221,7 @@ class WidgetFileProcessor {
     String filePath, {
     int debugLvl = 0,
     bool initialIsOptional = false,
+    bool selfJsonSerialization = false,
   }) {
     var parameterLines = <String>[];
 
@@ -246,6 +251,7 @@ class WidgetFileProcessor {
       parameters: parameters,
       name: name,
       originFilePath: filePath,
+      selfJsonSerialization: selfJsonSerialization,
     );
 
     return rawWidgetDj;

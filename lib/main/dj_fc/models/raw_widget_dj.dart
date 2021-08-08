@@ -17,11 +17,13 @@ class RawWidgetDj {
   final String name;
   final List<Parameter> parameters;
   final String originFilePath;
+  final bool selfJsonSerialization;
 
   RawWidgetDj({
     required this.name,
     required this.parameters,
     required this.originFilePath,
+    this.selfJsonSerialization = false,
   });
 
   @override
@@ -74,38 +76,6 @@ class RawWidgetDj {
       "// Setting data type of this field to be 'dynamic' instead of",
       "// '$dataType' for now.",
     ]);
-
-    // var hasDefaultValue = parameter.defaultValue != null;
-
-    // if (dataType != 'dynamic' &&
-    //     !djNamesMap.keys.contains(dataType) &&
-    //     !dataType.contains('<')) {
-    //   if (!unKnownDataTypes.contains(dataType)) {
-    //     unKnownDataTypes.add(dataType);
-    //   }
-    // }
-
-    // var lines;
-    // var dataTypeLine = 'dynamic';
-    // var mappedDataType = djNamesMap[dataType];
-    // if (dataType.contains('<')) {
-    //   lines = ['// $dataType Because Generics are not handled yet'];
-    // } else if (mappedDataType == null) {
-    //   lines = ["// $dataType Because it's Dj Version Not implemented yet"];
-    // } else if (hasDefaultValue) {
-    //   lines = ['// $dataType because Non-Dj default value is provided.'];
-    // } else if (!dataType.endsWith('?') && !parameter.isFieldRequired) {
-    //   lines = ["// $dataType because for default value couldn't parsed."];
-    // } else {
-    //   dataTypeLine = mappedDataType;
-    // }
-
-    // if (lines != null) {
-    //   var r = "// Setting data type of this field to be 'dynamic' instead of";
-    //   lines = [r] + lines;
-    // }
-
-    // return _SafetyDataType(dataType: dataTypeLine, description: lines);
   }
 
   CodePartDj getToCode(List<FieldDj> fields) {
@@ -191,20 +161,22 @@ class RawWidgetDj {
 
     var codeParts = <CodePartDj>[
       ImportDj(importStr: 'dj', isPackage: true),
-      ImportDj(importStr: 'json_annotation', isPackage: true),
+      if (!selfJsonSerialization)
+        ImportDj(importStr: 'json_annotation', isPackage: true),
       EmptyLineDj(),
-      ImportDj(importStr: widgetFileName, isPart: true),
-      EmptyLineDj(),
+      if (!selfJsonSerialization)
+        ImportDj(importStr: widgetFileName, isPart: true),
+      if (!selfJsonSerialization) EmptyLineDj(),
       ClassDj(
         name: widgetDjName,
         isExtends: true,
         baseName: 'BaseWidgetDj',
         fields: fields,
-        jsonSerializable: true,
         functions: [
           getToCode(fields),
           getToString(),
         ],
+        selfJsonSerialization: selfJsonSerialization,
       ),
       EmptyLineDj(),
     ];

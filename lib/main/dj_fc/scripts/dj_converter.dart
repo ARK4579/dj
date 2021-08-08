@@ -50,6 +50,7 @@ void main(List<String> arguments) {
 
       var flutterSdkWidgetProcessor = FlutterSdkWidgetProcessor(
         sdkLocation: FLUTTER_SDK_LOCATION,
+        selfJsonSerialization: true,
       );
 
       var rawWidgets = flutterSdkWidgetProcessor.process();

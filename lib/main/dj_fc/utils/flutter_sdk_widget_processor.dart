@@ -11,9 +11,11 @@ const String? PARSE_ONLY_FILE = null;
 
 class FlutterSdkWidgetProcessor {
   final String sdkLocation;
+  final bool selfJsonSerialization;
 
   FlutterSdkWidgetProcessor({
     required this.sdkLocation,
+    this.selfJsonSerialization = false,
   });
 
   List<RawWidgetDj> _processWidgetDirectory(directory) {
@@ -33,7 +35,10 @@ class FlutterSdkWidgetProcessor {
           //... else only PARSE_ONLY_FILE will be parsed
           var parseFile = itemPath.endsWith(PARSE_ONLY_FILE ?? '.dart');
           if (parseFile) {
-            var rawWidgets = WidgetFileProcessor(file: item).process();
+            var rawWidgets = WidgetFileProcessor(
+              file: item,
+              selfJsonSerialization: selfJsonSerialization,
+            ).process();
             directoryRawWidgets += rawWidgets;
           }
         }
