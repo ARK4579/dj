@@ -1,3 +1,7 @@
+## 0.0.14
+
+- merged dj_fc into dj
+
 ## 0.0.13
 
 - fixed issues with previous release
