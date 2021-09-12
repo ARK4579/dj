@@ -3,6 +3,8 @@ import 'package:dj/main/main.dart';
 
 part 'code_part.g.dart';
 
+typedef ExtendedJsonConverter = CodePartDj Function(Map<String, dynamic> json);
+
 enum CodePartDjType {
   FunctionCall,
   Function,
@@ -70,8 +72,11 @@ class CodePartDj {
       case CodePartDjType.BaseWidget:
         return BaseWidgetDj.fromJson(json);
       default:
+        if (CodePartDj.extendedJsonConverter != null) {
+          return CodePartDj.extendedJsonConverter!(json);
+        }
         throw Exception(
-          'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}',
+          'CodePartDj.extendedJsonConverter not implemented.',
         );
     }
   }
@@ -90,4 +95,10 @@ class CodePartDj {
   String toString() {
     return toCode().join(' ');
   }
+
+  //
+  // Static Converter
+  //
+
+  static ExtendedJsonConverter? extendedJsonConverter;
 }

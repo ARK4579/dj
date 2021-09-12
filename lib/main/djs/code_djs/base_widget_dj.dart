@@ -20,9 +20,4 @@ class BaseWidgetDj extends CodePartDj {
       _$BaseWidgetDjFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$BaseWidgetDjToJson(this);
-
-  @override
-  String toString() {
-    return toCode().join();
-  }
 }
