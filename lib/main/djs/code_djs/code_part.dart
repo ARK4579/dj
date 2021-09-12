@@ -19,8 +19,6 @@ enum CodePartDjType {
   SingleLine,
   Export,
   BaseWidget,
-  Boolean,
-  String,
   // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
@@ -69,10 +67,6 @@ class CodePartDj {
         return ExportDj.fromJson(json);
       case CodePartDjType.BaseWidget:
         return BaseWidgetDj.fromJson(json);
-      case CodePartDjType.Boolean:
-        return BooleanDj.fromJson(json);
-      case CodePartDjType.String:
-        return StringDj.fromJson(json);
       default:
         throw Exception(
           'CodePartDj.fromJson not handled for ${codePartDj.codePartDjType}',

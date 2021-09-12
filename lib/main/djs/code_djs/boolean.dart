@@ -4,17 +4,15 @@ import 'package:dj/main/main.dart';
 part 'boolean.g.dart';
 
 @JsonSerializable()
-class BooleanDj extends CodePartDj {
+class BooleanDj extends BaseWidgetDj {
   @JsonKey(name: 'value')
   final bool? value;
 
   BooleanDj({
     descriptionDj,
     this.value,
-    CodePartDjType codePartDjType = CodePartDjType.Boolean,
   }) : super(
-          descriptionDj: descriptionDj,
-          codePartDjType: codePartDjType,
+          baseWidgetDjType: 'bool',
         );
 
   factory BooleanDj.fromJson(Map<String, dynamic> json) =>

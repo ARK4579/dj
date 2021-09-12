@@ -139,13 +139,13 @@ class RawWidgetDj {
         .map(
           (p) => FieldDj(
             name: p.name,
-            dataType: p.type,
             safeDataType: _getFieldSafeDataType(p, djNamesMap).dataType,
             safetyDescription: _getFieldSafeDataType(p, djNamesMap).description,
             isFinal: p.isFinal,
             isRequired: p.isFieldRequired,
             isOptional: p.isOptional,
-            defaultValue: p.defaultValue,
+            // TODO: get default value here
+            // defaultValue: p.defaultValue,
           ),
         )
         .toList();
@@ -153,8 +153,9 @@ class RawWidgetDj {
     fields.add(
       FieldDj(
         name: 'baseWidgetDjType',
-        dataType: 'String',
-        defaultValue: "'$name'",
+        defaultValue: StringDj(
+          value: "'$name'",
+        ),
         superOnly: true,
       ),
     );

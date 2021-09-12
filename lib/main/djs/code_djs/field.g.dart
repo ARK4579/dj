@@ -10,7 +10,6 @@ FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
   return FieldDj(
     descriptionDj: json['descriptionDj'],
     name: json['name'] as String?,
-    dataType: json['dataType'] as String?,
     safeDataType: json['safeDataType'] as String?,
     safetyDescription: (json['safetyDescription'] as List<dynamic>?)
         ?.map((e) => e as String)
@@ -20,7 +19,9 @@ FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
     isOptional: json['isOptional'] as bool?,
     superOnly: json['superOnly'] as bool?,
     isStatic: json['isStatic'] as bool?,
-    defaultValue: json['defaultValue'],
+    defaultValue: json['defaultValue'] == null
+        ? null
+        : BaseWidgetDj.fromJson(json['defaultValue'] as Map<String, dynamic>),
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
@@ -39,7 +40,6 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
   writeNotNull('name', instance.name);
-  writeNotNull('dataType', instance.dataType);
   writeNotNull('safeDataType', instance.safeDataType);
   writeNotNull('safetyDescription', instance.safetyDescription);
   writeNotNull('isFinal', instance.isFinal);
@@ -47,7 +47,7 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
   writeNotNull('isOptional', instance.isOptional);
   writeNotNull('isStatic', instance.isStatic);
   writeNotNull('superOnly', instance.superOnly);
-  writeNotNull('defaultValue', instance.defaultValue);
+  writeNotNull('defaultValue', instance.defaultValue?.toJson());
   return val;
 }
 
@@ -93,6 +93,4 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
-  CodePartDjType.Boolean: 'Boolean',
-  CodePartDjType.String: 'String',
 };

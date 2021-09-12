@@ -8,9 +8,6 @@ class FieldDj extends CodePartDj {
   @JsonKey(name: 'name')
   final String? name;
 
-  @JsonKey(name: 'dataType')
-  final String? dataType;
-
   @JsonKey(name: 'safeDataType')
   final String? safeDataType;
 
@@ -33,12 +30,11 @@ class FieldDj extends CodePartDj {
   final bool? superOnly;
 
   @JsonKey(name: 'defaultValue')
-  final dynamic defaultValue;
+  final BaseWidgetDj? defaultValue;
 
   FieldDj({
     descriptionDj,
     this.name,
-    this.dataType,
     this.safeDataType,
     this.safetyDescription,
     this.isFinal = true,
@@ -83,13 +79,15 @@ class FieldDj extends CodePartDj {
   // Getters
   //
 
+  String? get dataType => defaultValue?.baseWidgetDjType;
+
   String get appliedDataType {
     late String dataTypeLine;
 
     if (safeDataType != null) {
       dataTypeLine = safeDataType!;
-    } else if (dataType != null) {
-      dataTypeLine = dataType!;
+    } else if (defaultValue != null) {
+      dataTypeLine = defaultValue!.baseWidgetDjType;
     } else {
       dataTypeLine = 'dynamic';
     }
@@ -100,9 +98,11 @@ class FieldDj extends CodePartDj {
   String get parseAsType {
     var parseAs = '';
 
-    if (dataType != null) {
-      if (['String', 'String?', 'bool', 'bool?'].contains(dataType)) {
-        parseAs = 'as $dataType';
+    if (defaultValue != null) {
+      if (['String', 'String?'].contains(dataType)) {
+        parseAs = 'as String';
+      } else if (['bool', 'bool?'].contains(dataType)) {
+        parseAs = 'as bool';
       }
     }
 

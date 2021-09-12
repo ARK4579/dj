@@ -4,18 +4,18 @@ import 'package:dj/main/main.dart';
 part 'string.g.dart';
 
 @JsonSerializable()
-class StringDj extends CodePartDj {
+class StringDj extends BaseWidgetDj {
   @JsonKey(name: 'value')
-  final bool? value;
+  final String? value;
 
   StringDj({
     descriptionDj,
     this.value,
-    CodePartDjType codePartDjType = CodePartDjType.String,
   }) : super(
-          descriptionDj: descriptionDj,
-          codePartDjType: codePartDjType,
+          baseWidgetDjType: 'String',
         );
+
+  String get dataType => 'String';
 
   factory StringDj.fromJson(Map<String, dynamic> json) =>
       _$StringDjFromJson(json);
