@@ -15,3 +15,4 @@ export 'export.dart';
 export 'base_widget_dj.dart';
 export 'manual_widget_dj.dart';
 export 'boolean.dart';
+export 'string.dart';

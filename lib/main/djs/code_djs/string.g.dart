@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'export.dart';
+part of 'string.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ExportDj _$ExportDjFromJson(Map<String, dynamic> json) {
-  return ExportDj(
+StringDj _$StringDjFromJson(Map<String, dynamic> json) {
+  return StringDj(
     descriptionDj: json['descriptionDj'],
-    exportStr: json['exportStr'] as String?,
+    value: json['value'] as bool?,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$ExportDjToJson(ExportDj instance) {
+Map<String, dynamic> _$StringDjToJson(StringDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -27,7 +27,7 @@ Map<String, dynamic> _$ExportDjToJson(ExportDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
-  writeNotNull('exportStr', instance.exportStr);
+  writeNotNull('value', instance.value);
   return val;
 }
 

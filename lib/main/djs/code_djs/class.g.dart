@@ -93,4 +93,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
   CodePartDjType.Boolean: 'Boolean',
+  CodePartDjType.String: 'String',
 };
