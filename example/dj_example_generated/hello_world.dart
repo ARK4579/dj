@@ -4,14 +4,14 @@ void main() {
   if (1 == 2) {
     print('Its True! 1 equals 2 now!');
   } else if (2 == 1) {
-    print('Its True! 2 equals 1 now!');
+    print('Its True! Apparently 2 equals 1 now!');
   } else {
     print('Its False!');
   }
 }
 
 class SampleClass {
-  final dynamic isSample;
+  final bool isSample;
 
   SampleClass({
     this.isSample = true,
@@ -19,7 +19,7 @@ class SampleClass {
 
   factory SampleClass.fromJson(Map<String, dynamic> json) {
     return SampleClass(
-      isSample: json['isSample'],
+      isSample: json['isSample'] as bool,
     );
   }
 

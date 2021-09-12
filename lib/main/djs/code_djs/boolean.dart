@@ -11,12 +11,21 @@ class BooleanDj extends BaseWidgetDj {
   BooleanDj({
     descriptionDj,
     this.value,
+    baseWidgetDjType = 'bool',
   }) : super(
-          baseWidgetDjType: 'bool',
+          baseWidgetDjType: baseWidgetDjType,
+          descriptionDj: descriptionDj,
         );
+
+  String get dataType => baseWidgetDjType;
 
   factory BooleanDj.fromJson(Map<String, dynamic> json) =>
       _$BooleanDjFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$BooleanDjToJson(this);
+
+  @override
+  String toString() {
+    return value.toString();
+  }
 }

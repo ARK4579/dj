@@ -10,6 +10,7 @@ StringDj _$StringDjFromJson(Map<String, dynamic> json) {
   return StringDj(
     descriptionDj: json['descriptionDj'],
     value: json['value'] as String?,
+    baseWidgetDjType: json['baseWidgetDjType'],
   );
 }
 
@@ -23,6 +24,7 @@ Map<String, dynamic> _$StringDjToJson(StringDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
+  val['baseWidgetDjType'] = instance.baseWidgetDjType;
   writeNotNull('value', instance.value);
   return val;
 }

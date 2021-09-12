@@ -34,7 +34,8 @@ class BaseDj {
       directoryDjIo.create(path);
     } catch (e) {
       // something went wrong, returning false to indicate that operation failed
-      return false;
+      rethrow;
+      // return false;
     }
 
     // successfully wwritten generated code to disk

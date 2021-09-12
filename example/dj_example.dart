@@ -22,7 +22,7 @@ void main() {
               bodyCodeParts: [
                 FunctionCallDj(
                   name: 'print',
-                  arg: "'Hello World!'",
+                  arg: StringDj(value: 'Hello World!'),
                 ),
                 IfElseDj(
                   conditions: [
@@ -32,7 +32,7 @@ void main() {
                       conditionRight: '2',
                       body: FunctionCallDj(
                         name: 'print',
-                        arg: "'Its True! 1 equals 2 now!'",
+                        arg: StringDj(value: 'Its True! 1 equals 2 now!'),
                       ),
                     ),
                     Condition(
@@ -41,13 +41,14 @@ void main() {
                       conditionRight: '1',
                       body: FunctionCallDj(
                         name: 'print',
-                        arg: "'Its True! 2 equals 1 now!'",
+                        arg: StringDj(
+                            value: 'Its True! Apparently 2 equals 1 now!'),
                       ),
                     ),
                     Condition(
                       body: FunctionCallDj(
                         name: 'print',
-                        arg: "'Its False!'",
+                        arg: StringDj(value: 'Its False!'),
                       ),
                     ),
                   ],

@@ -11,14 +11,21 @@ class StringDj extends BaseWidgetDj {
   StringDj({
     descriptionDj,
     this.value,
+    baseWidgetDjType = 'String',
   }) : super(
-          baseWidgetDjType: 'String',
+          baseWidgetDjType: baseWidgetDjType,
+          descriptionDj: descriptionDj,
         );
 
-  String get dataType => 'String';
+  String get dataType => baseWidgetDjType;
 
   factory StringDj.fromJson(Map<String, dynamic> json) =>
       _$StringDjFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$StringDjToJson(this);
+
+  @override
+  String toString() {
+    return "'$value'";
+  }
 }

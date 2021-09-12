@@ -41,12 +41,12 @@ NodeDjIo? getNodeDj(NodeDj? node, bool shouldFormat) {
   NodeDjIo? nodeDjIo;
   if (node.type == StructureType.Directory) {
     nodeDjIo = DirectoryDjIo(
-      directoryDj: DirectoryDj.fromJson(node.toJson()),
+      directoryDj: node as DirectoryDj,
       shouldFormat: shouldFormat,
     );
   } else if (node.type == StructureType.File) {
     nodeDjIo = FileDjIo(
-      fileDj: FileDj.fromJson(node.toJson()),
+      fileDj: node as FileDj,
       shouldFormat: shouldFormat,
     );
   } else {

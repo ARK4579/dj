@@ -11,10 +11,9 @@ class BaseWidgetDj extends CodePartDj {
   BaseWidgetDj({
     required this.baseWidgetDjType,
     descriptionDj,
-    CodePartDjType codePartDjType = CodePartDjType.BaseWidget,
   }) : super(
           descriptionDj: descriptionDj,
-          codePartDjType: codePartDjType,
+          codePartDjType: CodePartDjType.BaseWidget,
         );
 
   factory BaseWidgetDj.fromJson(Map<String, dynamic> json) =>
@@ -23,7 +22,7 @@ class BaseWidgetDj extends CodePartDj {
   Map<String, dynamic> toJson() => _$BaseWidgetDjToJson(this);
 
   @override
-  List<String> toCode() {
-    return super.toCode();
+  String toString() {
+    return toCode().join();
   }
 }

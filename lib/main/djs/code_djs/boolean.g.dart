@@ -10,6 +10,7 @@ BooleanDj _$BooleanDjFromJson(Map<String, dynamic> json) {
   return BooleanDj(
     descriptionDj: json['descriptionDj'],
     value: json['value'] as bool?,
+    baseWidgetDjType: json['baseWidgetDjType'],
   );
 }
 
@@ -23,6 +24,7 @@ Map<String, dynamic> _$BooleanDjToJson(BooleanDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
+  val['baseWidgetDjType'] = instance.baseWidgetDjType;
   writeNotNull('value', instance.value);
   return val;
 }

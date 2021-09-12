@@ -19,6 +19,8 @@ enum CodePartDjType {
   SingleLine,
   Export,
   BaseWidget,
+  String,
+  Boolean,
   // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
