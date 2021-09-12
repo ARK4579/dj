@@ -8,8 +8,8 @@ class StringDj extends DataTypeDj {
   @JsonKey(name: 'value')
   final String value;
 
-  StringDj({
-    required this.value,
+  StringDj(
+    this.value, {
     descriptionDj,
     baseWidgetDjType = 'String',
     DataTypeDjType dataTypeDjType = DataTypeDjType.String,

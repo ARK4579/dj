@@ -8,7 +8,7 @@ part of 'string.dart';
 
 StringDj _$StringDjFromJson(Map<String, dynamic> json) {
   return StringDj(
-    value: json['value'] as String,
+    json['value'] as String,
     descriptionDj: json['descriptionDj'],
     dataTypeDjType:
         _$enumDecode(_$DataTypeDjTypeEnumMap, json['dataTypeDjType']),
@@ -81,4 +81,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
   CodePartDjType.DataType: 'DataType',
+  CodePartDjType.CustomType: 'CustomType',
 };

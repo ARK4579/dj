@@ -153,9 +153,7 @@ class RawWidgetDj {
     fields.add(
       FieldDj(
         name: 'baseWidgetDjType',
-        defaultValue: StringDj(
-          value: "'$name'",
-        ),
+        defaultValue: StringDj("'$name'"),
         superOnly: true,
       ),
     );

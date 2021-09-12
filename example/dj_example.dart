@@ -22,7 +22,7 @@ void main() {
               bodyCodeParts: [
                 FunctionCallDj(
                   name: 'print',
-                  arg: StringDj(value: 'Hello World!'),
+                  arg: StringDj('Hello World!'),
                 ),
                 IfElseDj(
                   conditions: [
@@ -32,7 +32,7 @@ void main() {
                       conditionRight: '2',
                       body: FunctionCallDj(
                         name: 'print',
-                        arg: StringDj(value: 'Its True! 1 equals 2 now!'),
+                        arg: StringDj('Its True! 1 equals 2 now!'),
                       ),
                     ),
                     Condition(
@@ -41,14 +41,13 @@ void main() {
                       conditionRight: '1',
                       body: FunctionCallDj(
                         name: 'print',
-                        arg: StringDj(
-                            value: 'Its True! Apparently 2 equals 1 now!'),
+                        arg: StringDj('Its True! Apparently 2 equals 1 now!'),
                       ),
                     ),
                     Condition(
                       body: FunctionCallDj(
                         name: 'print',
-                        arg: StringDj(value: 'Its False!'),
+                        arg: StringDj('Its False!'),
                       ),
                     ),
                   ],
@@ -60,9 +59,7 @@ void main() {
               fields: [
                 FieldDj(
                   name: 'isSample',
-                  defaultValue: BooleanDj(
-                    value: true,
-                  ),
+                  defaultValue: BooleanDj(true),
                 ),
               ],
               selfJsonSerialization: true,

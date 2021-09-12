@@ -8,8 +8,8 @@ class BooleanDj extends DataTypeDj {
   @JsonKey(name: 'value')
   final bool value;
 
-  BooleanDj({
-    required this.value,
+  BooleanDj(
+    this.value, {
     descriptionDj,
     baseWidgetDjType = 'bool',
     DataTypeDjType dataTypeDjType = DataTypeDjType.Boolean,
