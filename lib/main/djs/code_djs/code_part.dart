@@ -41,8 +41,6 @@ class CodePartDj {
   factory CodePartDj.fromJson(Map<String, dynamic> json) {
     var codePartDj = _$CodePartDjFromJson(json);
 
-    print('CodePartDj.fromJson $json ${codePartDj.codePartDjType}');
-
     switch (codePartDj.codePartDjType) {
       case CodePartDjType.Function:
         return FunctionDj.fromJson(json);

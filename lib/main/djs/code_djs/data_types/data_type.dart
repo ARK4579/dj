@@ -28,8 +28,6 @@ class DataTypeDj extends CodePartDj {
   factory DataTypeDj.fromJson(Map<String, dynamic> json) {
     var dataTypeDj = _$DataTypeDjFromJson(json);
 
-    print('DataTypeDj.fromJson $json');
-
     switch (dataTypeDj.dataTypeDjType) {
       case DataTypeDjType.Boolean:
         return BooleanDj.fromJson(json);
