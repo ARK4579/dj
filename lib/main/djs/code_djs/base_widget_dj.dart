@@ -11,9 +11,10 @@ class BaseWidgetDj extends CodePartDj {
   BaseWidgetDj({
     required this.baseWidgetDjType,
     descriptionDj,
+    CodePartDjType codePartDjType = CodePartDjType.BaseWidget,
   }) : super(
           descriptionDj: descriptionDj,
-          codePartDjType: CodePartDjType.BaseWidget,
+          codePartDjType: codePartDjType,
         );
 
   factory BaseWidgetDj.fromJson(Map<String, dynamic> json) =>

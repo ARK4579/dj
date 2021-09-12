@@ -10,7 +10,7 @@ CodePartDj _$CodePartDjFromJson(Map<String, dynamic> json) {
   return CodePartDj(
     descriptionDj: json['descriptionDj'] as String?,
     codePartDjType:
-        _$enumDecodeNullable(_$CodePartDjTypeEnumMap, json['codePartDjType']),
+        _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
@@ -24,8 +24,7 @@ Map<String, dynamic> _$CodePartDjToJson(CodePartDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
-  writeNotNull(
-      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   return val;
 }
 
@@ -55,17 +54,6 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
-
 const _$CodePartDjTypeEnumMap = {
   CodePartDjType.FunctionCall: 'FunctionCall',
   CodePartDjType.Function: 'Function',
@@ -82,6 +70,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
-  CodePartDjType.String: 'String',
-  CodePartDjType.Boolean: 'Boolean',
+  CodePartDjType.DataType: 'DataType',
 };

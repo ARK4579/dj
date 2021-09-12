@@ -29,8 +29,7 @@ Map<String, dynamic> _$ImportDjToJson(ImportDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
-  writeNotNull(
-      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   val['importStr'] = instance.importStr;
   val['isPackage'] = instance.isPackage;
   val['isFlutter'] = instance.isFlutter;
@@ -81,6 +80,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
-  CodePartDjType.String: 'String',
-  CodePartDjType.Boolean: 'Boolean',
+  CodePartDjType.DataType: 'DataType',
 };

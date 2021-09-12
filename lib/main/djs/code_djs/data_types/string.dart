@@ -4,20 +4,22 @@ import 'package:dj/main/main.dart';
 part 'string.g.dart';
 
 @JsonSerializable()
-class StringDj extends BaseWidgetDj {
+class StringDj extends DataTypeDj {
   @JsonKey(name: 'value')
-  final String? value;
+  final String value;
 
   StringDj({
+    required this.value,
     descriptionDj,
-    this.value,
     baseWidgetDjType = 'String',
+    DataTypeDjType dataTypeDjType = DataTypeDjType.String,
+    CodePartDjType codePartDjType = CodePartDjType.DataType,
   }) : super(
           baseWidgetDjType: baseWidgetDjType,
           descriptionDj: descriptionDj,
+          dataTypeDjType: dataTypeDjType,
+          codePartDjType: codePartDjType,
         );
-
-  String get dataType => baseWidgetDjType;
 
   factory StringDj.fromJson(Map<String, dynamic> json) =>
       _$StringDjFromJson(json);
@@ -28,4 +30,7 @@ class StringDj extends BaseWidgetDj {
   String toString() {
     return "'$value'";
   }
+
+  @override
+  String get dataType => 'String';
 }

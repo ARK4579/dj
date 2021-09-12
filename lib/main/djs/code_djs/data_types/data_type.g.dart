@@ -1,23 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'if_else.dart';
+part of 'data_type.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-IfElseDj _$IfElseDjFromJson(Map<String, dynamic> json) {
-  return IfElseDj(
+DataTypeDj _$DataTypeDjFromJson(Map<String, dynamic> json) {
+  return DataTypeDj(
     descriptionDj: json['descriptionDj'],
-    conditions: (json['conditions'] as List<dynamic>?)
-        ?.map((e) => Condition.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    dataTypeDjType:
+        _$enumDecode(_$DataTypeDjTypeEnumMap, json['dataTypeDjType']),
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
+Map<String, dynamic> _$DataTypeDjToJson(DataTypeDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -28,8 +27,7 @@ Map<String, dynamic> _$IfElseDjToJson(IfElseDj instance) {
 
   writeNotNull('descriptionDj', instance.descriptionDj);
   val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
-  writeNotNull(
-      'conditions', instance.conditions?.map((e) => e.toJson()).toList());
+  val['dataTypeDjType'] = _$DataTypeDjTypeEnumMap[instance.dataTypeDjType];
   return val;
 }
 
@@ -58,6 +56,11 @@ K _$enumDecode<K, V>(
     },
   ).key;
 }
+
+const _$DataTypeDjTypeEnumMap = {
+  DataTypeDjType.Boolean: 'Boolean',
+  DataTypeDjType.String: 'String',
+};
 
 const _$CodePartDjTypeEnumMap = {
   CodePartDjType.FunctionCall: 'FunctionCall',

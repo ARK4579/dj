@@ -21,8 +21,7 @@ enum CodePartDjType {
   SingleLine,
   Export,
   BaseWidget,
-  String,
-  Boolean,
+  DataType,
   // While adding New type here, don't forget to update CodePartDj.fromJson
 }
 
@@ -32,15 +31,17 @@ class CodePartDj {
   final String? descriptionDj;
 
   @JsonKey(name: 'codePartDjType')
-  final CodePartDjType? codePartDjType;
+  final CodePartDjType codePartDjType;
 
   const CodePartDj({
     this.descriptionDj,
-    this.codePartDjType,
+    required this.codePartDjType,
   });
 
   factory CodePartDj.fromJson(Map<String, dynamic> json) {
     var codePartDj = _$CodePartDjFromJson(json);
+
+    print('CodePartDj.fromJson $json ${codePartDj.codePartDjType}');
 
     switch (codePartDj.codePartDjType) {
       case CodePartDjType.Function:
@@ -71,6 +72,8 @@ class CodePartDj {
         return ExportDj.fromJson(json);
       case CodePartDjType.BaseWidget:
         return BaseWidgetDj.fromJson(json);
+      case CodePartDjType.DataType:
+        return DataTypeDj.fromJson(json);
       default:
         if (CodePartDj.extendedJsonConverter != null) {
           return CodePartDj.extendedJsonConverter!(json);
@@ -97,7 +100,7 @@ class CodePartDj {
   }
 
   //
-  // Static Converter
+  // Static
   //
 
   static ExtendedJsonConverter? extendedJsonConverter;

@@ -30,7 +30,7 @@ class FieldDj extends CodePartDj {
   final bool? superOnly;
 
   @JsonKey(name: 'defaultValue')
-  final BaseWidgetDj? defaultValue;
+  final DataTypeDj? defaultValue;
 
   FieldDj({
     descriptionDj,
@@ -79,7 +79,7 @@ class FieldDj extends CodePartDj {
   // Getters
   //
 
-  String? get dataType => defaultValue?.baseWidgetDjType;
+  String? get dataType => defaultValue?.dataType;
 
   String get appliedDataType {
     late String dataTypeLine;
@@ -87,7 +87,7 @@ class FieldDj extends CodePartDj {
     if (safeDataType != null) {
       dataTypeLine = safeDataType!;
     } else if (defaultValue != null) {
-      dataTypeLine = defaultValue!.baseWidgetDjType;
+      dataTypeLine = dataType!;
     } else {
       dataTypeLine = 'dynamic';
     }

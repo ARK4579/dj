@@ -36,8 +36,7 @@ Map<String, dynamic> _$FunctionDjToJson(FunctionDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
-  writeNotNull(
-      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   writeNotNull('outputType', _$VariableTypeEnumMap[instance.outputType]);
   val['name'] = instance.name;
   writeNotNull('args', instance.args?.map((e) => e.toJson()).toList());
@@ -111,6 +110,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
-  CodePartDjType.String: 'String',
-  CodePartDjType.Boolean: 'Boolean',
+  CodePartDjType.DataType: 'DataType',
 };

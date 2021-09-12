@@ -25,8 +25,7 @@ Map<String, dynamic> _$ExportDjToJson(ExportDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
-  writeNotNull(
-      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   writeNotNull('exportStr', instance.exportStr);
   return val;
 }
@@ -73,6 +72,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
-  CodePartDjType.String: 'String',
-  CodePartDjType.Boolean: 'Boolean',
+  CodePartDjType.DataType: 'DataType',
 };

@@ -21,7 +21,7 @@ FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
     isStatic: json['isStatic'] as bool?,
     defaultValue: json['defaultValue'] == null
         ? null
-        : BaseWidgetDj.fromJson(json['defaultValue'] as Map<String, dynamic>),
+        : DataTypeDj.fromJson(json['defaultValue'] as Map<String, dynamic>),
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
@@ -37,8 +37,7 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
-  writeNotNull(
-      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   writeNotNull('name', instance.name);
   writeNotNull('safeDataType', instance.safeDataType);
   writeNotNull('safetyDescription', instance.safetyDescription);
@@ -93,6 +92,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
-  CodePartDjType.String: 'String',
-  CodePartDjType.Boolean: 'Boolean',
+  CodePartDjType.DataType: 'DataType',
 };

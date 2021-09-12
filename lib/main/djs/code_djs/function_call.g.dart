@@ -13,9 +13,9 @@ FunctionCallDj _$FunctionCallDjFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     arg: json['arg'] == null
         ? null
-        : BaseWidgetDj.fromJson(json['arg'] as Map<String, dynamic>),
+        : DataTypeDj.fromJson(json['arg'] as Map<String, dynamic>),
     args: (json['args'] as List<dynamic>?)
-        ?.map((e) => BaseWidgetDj.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => DataTypeDj.fromJson(e as Map<String, dynamic>))
         .toList(),
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
@@ -32,8 +32,7 @@ Map<String, dynamic> _$FunctionCallDjToJson(FunctionCallDj instance) {
   }
 
   writeNotNull('descriptionDj', instance.descriptionDj);
-  writeNotNull(
-      'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
+  val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   writeNotNull('outputStr', instance.outputStr);
   val['name'] = instance.name;
   writeNotNull('arg', instance.arg?.toJson());
@@ -83,6 +82,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
-  CodePartDjType.String: 'String',
-  CodePartDjType.Boolean: 'Boolean',
+  CodePartDjType.DataType: 'DataType',
 };

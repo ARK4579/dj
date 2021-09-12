@@ -12,10 +12,10 @@ class FunctionCallDj extends CodePartDj {
   final String name;
 
   @JsonKey(name: 'arg')
-  final BaseWidgetDj? arg;
+  final DataTypeDj? arg;
 
   @JsonKey(name: 'args')
-  final List<BaseWidgetDj>? args;
+  final List<DataTypeDj>? args;
 
   FunctionCallDj({
     descriptionDj,
