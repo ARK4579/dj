@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'single_line.dart';
+part of 'boolean.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SingleLineDj _$SingleLineDjFromJson(Map<String, dynamic> json) {
-  return SingleLineDj(
+BooleanDj _$BooleanDjFromJson(Map<String, dynamic> json) {
+  return BooleanDj(
     descriptionDj: json['descriptionDj'],
-    line: json['line'] as String?,
+    value: json['value'] as bool?,
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
 }
 
-Map<String, dynamic> _$SingleLineDjToJson(SingleLineDj instance) {
+Map<String, dynamic> _$BooleanDjToJson(BooleanDj instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -27,7 +27,7 @@ Map<String, dynamic> _$SingleLineDjToJson(SingleLineDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   writeNotNull(
       'codePartDjType', _$CodePartDjTypeEnumMap[instance.codePartDjType]);
-  writeNotNull('line', instance.line);
+  writeNotNull('value', instance.value);
   return val;
 }
 

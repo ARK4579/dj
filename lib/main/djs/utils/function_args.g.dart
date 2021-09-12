@@ -73,4 +73,5 @@ const _$VariableTypeEnumMap = {
   VariableType.ListString: 'ListString',
   VariableType.ListStringNullable: 'ListStringNullable',
   VariableType.Var: 'Var',
+  VariableType.Dynamic: 'Dynamic',
 };

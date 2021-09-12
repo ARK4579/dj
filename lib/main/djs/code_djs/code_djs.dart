@@ -14,3 +14,4 @@ export 'single_line.dart';
 export 'export.dart';
 export 'base_widget_dj.dart';
 export 'manual_widget_dj.dart';
+export 'boolean.dart';

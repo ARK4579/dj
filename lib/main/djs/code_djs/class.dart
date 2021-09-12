@@ -96,6 +96,7 @@ class ClassDj extends CodePartDj {
     fields?.forEach((field) {
       String? comment;
       var fieldLine = '${field.name}';
+
       if (field.superOnly ?? false) {
         superOnlyFields.add(field);
         if (field.defaultValue != null) {
@@ -104,8 +105,7 @@ class ClassDj extends CodePartDj {
           fieldLine = '$fieldLine';
         }
       } else if (field.hasDefaultValue) {
-        comment = 'ignoring defaultValue ${field.defaultValue}';
-        fieldLine = 'this.$fieldLine';
+        fieldLine = 'this.$fieldLine = ${field.defaultValue}';
       } else {
         fieldLine = 'this.$fieldLine';
         if ((field.isRequired ?? false) &&

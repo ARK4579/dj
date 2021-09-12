@@ -92,6 +92,7 @@ const _$VariableTypeEnumMap = {
   VariableType.ListString: 'ListString',
   VariableType.ListStringNullable: 'ListStringNullable',
   VariableType.Var: 'Var',
+  VariableType.Dynamic: 'Dynamic',
 };
 
 const _$CodePartDjTypeEnumMap = {
@@ -110,4 +111,5 @@ const _$CodePartDjTypeEnumMap = {
   CodePartDjType.SingleLine: 'SingleLine',
   CodePartDjType.Export: 'Export',
   CodePartDjType.BaseWidget: 'BaseWidget',
+  CodePartDjType.Boolean: 'Boolean',
 };

@@ -14,7 +14,7 @@ class SampleClass {
   final dynamic isSample;
 
   SampleClass({
-    this.isSample, // ignoring defaultValue true
+    this.isSample = true,
   });
 
   factory SampleClass.fromJson(Map<String, dynamic> json) {
@@ -23,6 +23,7 @@ class SampleClass {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final val = <String, dynamic>{};
 
