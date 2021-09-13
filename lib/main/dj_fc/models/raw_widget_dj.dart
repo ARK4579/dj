@@ -135,11 +135,12 @@ class RawWidgetDj {
   FileDj? toWidgetDjFileDj(Map<String, String> djNamesMap) {
     var widgetFileName = ReCase(widgetDjName).snakeCase;
 
-    parameters.forEach((p) {
-      if (djNamesMap[p.type] == null) {
-        print('$widgetDjName ${p.type} not found in djNamesMap');
-      }
-    });
+    // A list of parmeter not parsed
+    // parameters.forEach((p) {
+    //   if (djNamesMap[p.type] == null) {
+    //     print('$widgetDjName ${p.type} not found in djNamesMap');
+    //   }
+    // });
 
     var fields = parameters
         .map(

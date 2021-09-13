@@ -70,7 +70,7 @@ void main(List<String> arguments) {
         }
       });
 
-      print('requiredDjNames $requiredDjNames');
+      print('requiredDjNames $requiredDjNames ${requiredDjNames.length}');
 
       rawWidgets.removeWhere(
           (rawWidget) => !requiredDjNames.contains(rawWidget.widgetDjName));
