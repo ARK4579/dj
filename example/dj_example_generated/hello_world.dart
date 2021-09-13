@@ -19,7 +19,7 @@ class SampleClass {
 
   factory SampleClass.fromJson(Map<String, dynamic> json) {
     return SampleClass(
-      isSample: json['isSample'] as bool,
+      isSample: json['isSample'],
     );
   }
 
@@ -37,4 +37,3 @@ class SampleClass {
     return val;
   }
 }
-

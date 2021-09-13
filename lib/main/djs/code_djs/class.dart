@@ -99,8 +99,8 @@ class ClassDj extends CodePartDj {
 
       if (field.superOnly ?? false) {
         superOnlyFields.add(field);
-        if (field.defaultValue != null) {
-          fieldLine = '$fieldLine = ${field.defaultValue}';
+        if (field.hasDefaultValue) {
+          fieldLine = '$fieldLine = ${field.getDefaultValue}';
         } else {
           fieldLine = '$fieldLine';
         }

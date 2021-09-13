@@ -92,7 +92,7 @@ class RawWidgetDj {
         ignoreParamOnRun += "call('$name', '$fieldName', $fieldName)??false;\n";
         bodyCodeLines.add(ignoreParamOnRun);
 
-        var ifCondition = '$fieldName != null && $ignoreFieldName';
+        var ifCondition = '$fieldName != null && !$ignoreFieldName';
         bodyCodeLines.add('if($ifCondition) { ');
 
         var fieldValue = '\${dynamicParameterParser($fieldName)}';
@@ -102,9 +102,9 @@ class RawWidgetDj {
             FieldDj.checkParameterIgnore?.call(name, fieldName!, fieldValue) ??
                 false;
         if (fieldIsOptional && !ignoreParameter) {
-          bodyCodeLines.add("codeLines.add('$fieldName : $fieldValue, '); ");
+          bodyCodeLines.add("codeLines.add('$fieldName : $fieldValue, ');\n");
         } else {
-          bodyCodeLines.add("codeLines.add('$fieldValue, '); ");
+          bodyCodeLines.add("codeLines.add('$fieldValue, ');\n");
         }
 
         bodyCodeLines.add('}');
@@ -177,7 +177,7 @@ class RawWidgetDj {
     fields.add(
       FieldDj(
         name: 'baseWidgetDjType',
-        defaultValueDj: StringDj(name),
+        defaultValue: name,
         superOnly: true,
       ),
     );

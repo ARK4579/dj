@@ -6,7 +6,7 @@ part 'field.g.dart';
 typedef CheckParameterIgnore = bool Function(
   String widgetName,
   String parameterName,
-  String defaultValue,
+  dynamic defaultValue,
 );
 
 @JsonSerializable()
@@ -130,14 +130,30 @@ class FieldDj extends CodePartDj {
       ? "'${defaultValue!}'"
       : "'${defaultValueDj!.toString()}'";
 
+  // dynamic get getDefaultVal =>
+  //     defaultValue != null ? defaultValue! : defaultValueDj!.toString();
+
+  // String get getDefaultValue => valToStr(getDefaultVal);
+
   bool get isPrivate => (name ?? '').startsWith('_');
 
   //
   // Static
   //
 
+  // static String valToStr(dynamic val) {
+  //   print('valToStr $val');
+  //   switch (val.runtimeType) {
+  //     case bool:
+  //       return '$val';
+  //     case String:
+  //     default:
+  //       return "'$val'";
+  //   }
+  // }
+
   static CheckParameterIgnore? checkParameterIgnore =
-      (String widgetName, String fieldName, String value) {
+      (String widgetName, String fieldName, dynamic value) {
     return false;
   };
 }
