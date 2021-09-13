@@ -3,6 +3,12 @@ import 'package:dj/main/main.dart';
 
 part 'field.g.dart';
 
+typedef CheckParameterIgnore = bool Function(
+  String widgetName,
+  String parameterName,
+  String defaultValue,
+);
+
 @JsonSerializable()
 class FieldDj extends CodePartDj {
   @JsonKey(name: 'name')
@@ -93,7 +99,8 @@ class FieldDj extends CodePartDj {
     if (safeDataType != null) {
       dataTypeLine = safeDataType!;
     } else if (dataType != null) {
-      dataTypeLine = dataType!;
+      // dataTypeLine = dataType!;
+      dataTypeLine = 'dynamic';
     } else if (defaultValueDj != null) {
       dataTypeLine = defaultValueDj!.dataType;
     } else {
@@ -119,8 +126,18 @@ class FieldDj extends CodePartDj {
 
   bool get hasDefaultValue => defaultValue != null || defaultValueDj != null;
 
-  String get getDefaultValue =>
-      defaultValue != null ? defaultValue! : defaultValueDj!.toString();
+  String get getDefaultValue => defaultValue != null
+      ? "'${defaultValue!}'"
+      : "'${defaultValueDj!.toString()}'";
 
   bool get isPrivate => (name ?? '').startsWith('_');
+
+  //
+  // Static
+  //
+
+  static CheckParameterIgnore? checkParameterIgnore =
+      (String widgetName, String fieldName, String value) {
+    return false;
+  };
 }

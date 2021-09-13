@@ -1,3 +1,4 @@
+import 'package:dj/dj.dart';
 import 'package:dj/main/main.dart';
 import 'package:recase/recase.dart';
 
@@ -81,15 +82,31 @@ class RawWidgetDj {
   CodePartDj getToCode(List<FieldDj> fields) {
     var bodyCodeLines = <String>["codeLines.add('$name( '); "];
     fields.forEach((field) {
-      if (field.name != 'baseWidgetDjType' &&
-          !(field.name?.startsWith('_') ?? false)) {
-        bodyCodeLines.add('if(${field.name} != null) { ');
-        var fieldValue = '\${dynamicParameterParser(${field.name})}';
-        if (field.isOptional ?? false) {
-          bodyCodeLines.add("codeLines.add('${field.name} : $fieldValue, '); ");
+      var fieldName = field.name;
+      var ignoreFieldName = 'ignore${fieldName?.pascalCase}';
+      var privateFieldName = !(fieldName?.startsWith('_') ?? false);
+
+      if (fieldName != 'baseWidgetDjType' && privateFieldName) {
+        var ignoreParamOnRun = 'bool $ignoreFieldName = ';
+        ignoreParamOnRun += 'FieldDj.checkParameterIgnore?.';
+        ignoreParamOnRun += "call('$name', '$fieldName', $fieldName)??false;\n";
+        bodyCodeLines.add(ignoreParamOnRun);
+
+        var ifCondition = '$fieldName != null && $ignoreFieldName';
+        bodyCodeLines.add('if($ifCondition) { ');
+
+        var fieldValue = '\${dynamicParameterParser($fieldName)}';
+
+        var fieldIsOptional = field.isOptional ?? false;
+        var ignoreParameter =
+            FieldDj.checkParameterIgnore?.call(name, fieldName!, fieldValue) ??
+                false;
+        if (fieldIsOptional && !ignoreParameter) {
+          bodyCodeLines.add("codeLines.add('$fieldName : $fieldValue, '); ");
         } else {
           bodyCodeLines.add("codeLines.add('$fieldValue, '); ");
         }
+
         bodyCodeLines.add('}');
       }
     });
@@ -152,7 +169,6 @@ class RawWidgetDj {
             isFinal: p.isFinal,
             isRequired: p.isFieldRequired,
             isOptional: p.isOptional,
-            // TODO: get default value here
             defaultValue: p.defaultValue,
           ),
         )
