@@ -74,7 +74,7 @@ class RawWidgetDj {
 
     return _SafetyDataType(dataType: 'dynamic', description: [
       "// Setting data type of this field to be 'dynamic' instead of",
-      "// '$dataType' for now.",
+      "// '$dataType' ('${djNamesMap[dataType]}') for now.",
     ]);
   }
 
@@ -139,13 +139,14 @@ class RawWidgetDj {
         .map(
           (p) => FieldDj(
             name: p.name,
-            safeDataType: _getFieldSafeDataType(p, djNamesMap).dataType,
-            safetyDescription: _getFieldSafeDataType(p, djNamesMap).description,
+            dataType: djNamesMap[p.type],
+            // safeDataType: _getFieldSafeDataType(p, djNamesMap).dataType,
+            // safetyDescription: _getFieldSafeDataType(p, djNamesMap).description,
             isFinal: p.isFinal,
             isRequired: p.isFieldRequired,
             isOptional: p.isOptional,
             // TODO: get default value here
-            // defaultValue: p.defaultValue,
+            defaultValue: p.asDataType,
           ),
         )
         .toList();
@@ -153,13 +154,14 @@ class RawWidgetDj {
     fields.add(
       FieldDj(
         name: 'baseWidgetDjType',
-        defaultValue: StringDj("'$name'"),
+        defaultValue: StringDj(name),
         superOnly: true,
       ),
     );
 
     var codeParts = <CodePartDj>[
       ImportDj(importStr: 'dj', isPackage: true),
+      ImportDj(importStr: 'djs', isFile: true),
       if (!selfJsonSerialization)
         ImportDj(importStr: 'json_annotation', isPackage: true),
       EmptyLineDj(),

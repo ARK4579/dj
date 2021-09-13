@@ -8,6 +8,9 @@ class FieldDj extends CodePartDj {
   @JsonKey(name: 'name')
   final String? name;
 
+  @JsonKey(name: 'dataType')
+  final String? dataType;
+
   @JsonKey(name: 'safeDataType')
   final String? safeDataType;
 
@@ -35,6 +38,7 @@ class FieldDj extends CodePartDj {
   FieldDj({
     descriptionDj,
     this.name,
+    this.dataType,
     this.safeDataType,
     this.safetyDescription,
     this.isFinal = true,
@@ -79,15 +83,15 @@ class FieldDj extends CodePartDj {
   // Getters
   //
 
-  String? get dataType => defaultValue?.dataType;
-
   String get appliedDataType {
     late String dataTypeLine;
 
     if (safeDataType != null) {
       dataTypeLine = safeDataType!;
-    } else if (defaultValue != null) {
+    } else if (dataType != null) {
       dataTypeLine = dataType!;
+    } else if (defaultValue != null) {
+      dataTypeLine = defaultValue!.dataType;
     } else {
       dataTypeLine = 'dynamic';
     }

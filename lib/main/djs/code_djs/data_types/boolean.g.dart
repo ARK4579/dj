@@ -8,7 +8,7 @@ part of 'boolean.dart';
 
 BooleanDj _$BooleanDjFromJson(Map<String, dynamic> json) {
   return BooleanDj(
-    json['value'] as bool,
+    json['value'] as bool?,
     descriptionDj: json['descriptionDj'],
     dataTypeDjType:
         _$enumDecode(_$DataTypeDjTypeEnumMap, json['dataTypeDjType']),
@@ -29,7 +29,7 @@ Map<String, dynamic> _$BooleanDjToJson(BooleanDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   val['dataTypeDjType'] = _$DataTypeDjTypeEnumMap[instance.dataTypeDjType];
-  val['value'] = instance.value;
+  writeNotNull('value', instance.value);
   return val;
 }
 

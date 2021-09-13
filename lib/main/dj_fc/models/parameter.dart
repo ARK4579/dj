@@ -1,3 +1,5 @@
+import 'package:dj/dj.dart';
+
 class Parameter {
   final String? type;
   final bool isFinal;
@@ -34,4 +36,6 @@ class Parameter {
   //
 
   bool get isFieldRequired => (isRequired || isFinal) && !isOptional;
+
+  DataTypeDj? get asDataType => null;
 }

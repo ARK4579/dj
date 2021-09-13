@@ -1,0 +1,18 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "dj_fc",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main/dj_fc/scripts/dj_converter.dart",
+            "args": [
+                "-p",
+                "C:\\codelessly\\code\\Codelessly\\codelessly_sdk\\lib\\transformers\\common_transformers",
+            ]
+        }
+    ]
+}

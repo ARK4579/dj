@@ -10,6 +10,7 @@ FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
   return FieldDj(
     descriptionDj: json['descriptionDj'],
     name: json['name'] as String?,
+    dataType: json['dataType'] as String?,
     safeDataType: json['safeDataType'] as String?,
     safetyDescription: (json['safetyDescription'] as List<dynamic>?)
         ?.map((e) => e as String)
@@ -39,6 +40,7 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   writeNotNull('name', instance.name);
+  writeNotNull('dataType', instance.dataType);
   writeNotNull('safeDataType', instance.safeDataType);
   writeNotNull('safetyDescription', instance.safetyDescription);
   writeNotNull('isFinal', instance.isFinal);

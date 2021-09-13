@@ -6,7 +6,7 @@ part 'string.g.dart';
 @JsonSerializable()
 class StringDj extends DataTypeDj {
   @JsonKey(name: 'value')
-  final String value;
+  final String? value;
 
   StringDj(
     this.value, {

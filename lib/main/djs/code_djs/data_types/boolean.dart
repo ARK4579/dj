@@ -6,7 +6,7 @@ part 'boolean.g.dart';
 @JsonSerializable()
 class BooleanDj extends DataTypeDj {
   @JsonKey(name: 'value')
-  final bool value;
+  final bool? value;
 
   BooleanDj(
     this.value, {

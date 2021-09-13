@@ -11,7 +11,10 @@ const String FLUTTER_SDK_LOCATION =
     'C:\\Programs\\flutter\\flutter_windows\\flutter';
 const DJS_DIRECTORY_NAME = 'djs';
 
-List<String> getAllLines(String path) {
+List<String> getAllLines(
+  String path, {
+  bool ignoreDjDirectory = false,
+}) {
   var allLines = <String>[];
 
   var directory = Directory(path);
@@ -21,7 +24,7 @@ List<String> getAllLines(String path) {
     if (f is File) {
       allLines += f.readAsLinesSync();
     } else if (f is Directory) {
-      if (!f.path.endsWith('\\$DJS_DIRECTORY_NAME')) {
+      if (!(ignoreDjDirectory && f.path.endsWith('\\$DJS_DIRECTORY_NAME'))) {
         print('Goging down in ${f.path}');
         allLines += getAllLines(f.absolute.path);
       }

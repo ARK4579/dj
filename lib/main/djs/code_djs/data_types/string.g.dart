@@ -8,7 +8,7 @@ part of 'string.dart';
 
 StringDj _$StringDjFromJson(Map<String, dynamic> json) {
   return StringDj(
-    json['value'] as String,
+    json['value'] as String?,
     descriptionDj: json['descriptionDj'],
     dataTypeDjType:
         _$enumDecode(_$DataTypeDjTypeEnumMap, json['dataTypeDjType']),
@@ -29,7 +29,7 @@ Map<String, dynamic> _$StringDjToJson(StringDj instance) {
   writeNotNull('descriptionDj', instance.descriptionDj);
   val['codePartDjType'] = _$CodePartDjTypeEnumMap[instance.codePartDjType];
   val['dataTypeDjType'] = _$DataTypeDjTypeEnumMap[instance.dataTypeDjType];
-  val['value'] = instance.value;
+  writeNotNull('value', instance.value);
   return val;
 }
 
