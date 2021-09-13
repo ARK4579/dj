@@ -88,7 +88,7 @@ class RawWidgetDj {
 
       if (fieldName != 'baseWidgetDjType' && privateFieldName) {
         var ignoreParamOnRun = 'bool $ignoreFieldName = ';
-        ignoreParamOnRun += 'FieldDj.checkParameterIgnore?.';
+        ignoreParamOnRun += 'FieldDj.shouldIgnoreParameter?.';
         ignoreParamOnRun += "call('$name', '$fieldName', $fieldName)??false;\n";
         bodyCodeLines.add(ignoreParamOnRun);
 
@@ -99,7 +99,7 @@ class RawWidgetDj {
 
         var fieldIsOptional = field.isOptional ?? false;
         var ignoreParameter =
-            FieldDj.checkParameterIgnore?.call(name, fieldName!, fieldValue) ??
+            FieldDj.shouldIgnoreParameter?.call(name, fieldName!, fieldValue) ??
                 false;
         if (fieldIsOptional && !ignoreParameter) {
           bodyCodeLines.add("codeLines.add('$fieldName : $fieldValue, ');\n");

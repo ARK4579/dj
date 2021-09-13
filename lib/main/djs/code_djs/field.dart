@@ -152,7 +152,7 @@ class FieldDj extends CodePartDj {
   //   }
   // }
 
-  static CheckParameterIgnore? checkParameterIgnore =
+  static CheckParameterIgnore? shouldIgnoreParameter =
       (String widgetName, String fieldName, dynamic value) {
     return false;
   };
