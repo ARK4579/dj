@@ -1,3 +1,9 @@
+## 0.0.16
+
+- Implemented `shouldIgnoreParameter` Handler to let user ignore parameters in generated code based on value.
+- Implemented selfJsonSerialization to remove dependency of generated code on json_serializable.
+- General updates.
+
 ## 0.0.15
 
 - added missing `args` package.
