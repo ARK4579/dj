@@ -40,6 +40,8 @@ class FlutterSdkWidgetProcessor {
               selfJsonSerialization: selfJsonSerialization,
             ).process();
             directoryRawWidgets += rawWidgets;
+          } else {
+            print('skipping $itemPath');
           }
         }
       }

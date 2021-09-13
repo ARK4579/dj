@@ -58,7 +58,7 @@ void main(List<String> arguments) {
 
       var rawWidgets = flutterSdkWidgetProcessor.process();
 
-      var djNamesMap = getDjNamesMap(rawWidgets, includeVariants: false);
+      var djNamesMap = getDjNamesMap(rawWidgets, includeVariants: true);
 
       var allDjNames = djNamesMap.values.toList();
 
