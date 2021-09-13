@@ -20,9 +20,10 @@ FieldDj _$FieldDjFromJson(Map<String, dynamic> json) {
     isOptional: json['isOptional'] as bool?,
     superOnly: json['superOnly'] as bool?,
     isStatic: json['isStatic'] as bool?,
-    defaultValue: json['defaultValue'] == null
+    defaultValue: json['defaultValue'] as String?,
+    defaultValueDj: json['defaultValueDj'] == null
         ? null
-        : DataTypeDj.fromJson(json['defaultValue'] as Map<String, dynamic>),
+        : DataTypeDj.fromJson(json['defaultValueDj'] as Map<String, dynamic>),
     codePartDjType:
         _$enumDecode(_$CodePartDjTypeEnumMap, json['codePartDjType']),
   );
@@ -48,7 +49,8 @@ Map<String, dynamic> _$FieldDjToJson(FieldDj instance) {
   writeNotNull('isOptional', instance.isOptional);
   writeNotNull('isStatic', instance.isStatic);
   writeNotNull('superOnly', instance.superOnly);
-  writeNotNull('defaultValue', instance.defaultValue?.toJson());
+  writeNotNull('defaultValue', instance.defaultValue);
+  writeNotNull('defaultValueDj', instance.defaultValueDj?.toJson());
   return val;
 }
 

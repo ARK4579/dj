@@ -59,7 +59,7 @@ void main() {
               fields: [
                 FieldDj(
                   name: 'isSample',
-                  defaultValue: BooleanDj(true),
+                  defaultValueDj: BooleanDj(true),
                 ),
               ],
               selfJsonSerialization: true,

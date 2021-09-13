@@ -105,7 +105,7 @@ class ClassDj extends CodePartDj {
           fieldLine = '$fieldLine';
         }
       } else if (field.hasDefaultValue) {
-        fieldLine = 'this.$fieldLine = ${field.defaultValue}';
+        fieldLine = 'this.$fieldLine = ${field.getDefaultValue}';
       } else {
         fieldLine = 'this.$fieldLine';
         if ((field.isRequired ?? false) &&

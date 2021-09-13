@@ -33,7 +33,10 @@ class FieldDj extends CodePartDj {
   final bool? superOnly;
 
   @JsonKey(name: 'defaultValue')
-  final DataTypeDj? defaultValue;
+  final String? defaultValue;
+
+  @JsonKey(name: 'defaultValueDj')
+  final DataTypeDj? defaultValueDj;
 
   FieldDj({
     descriptionDj,
@@ -47,6 +50,7 @@ class FieldDj extends CodePartDj {
     this.superOnly = false,
     this.isStatic = false,
     this.defaultValue,
+    this.defaultValueDj,
     CodePartDjType codePartDjType = CodePartDjType.Field,
   }) : super(
           descriptionDj: descriptionDj,
@@ -90,8 +94,8 @@ class FieldDj extends CodePartDj {
       dataTypeLine = safeDataType!;
     } else if (dataType != null) {
       dataTypeLine = dataType!;
-    } else if (defaultValue != null) {
-      dataTypeLine = defaultValue!.dataType;
+    } else if (defaultValueDj != null) {
+      dataTypeLine = defaultValueDj!.dataType;
     } else {
       dataTypeLine = 'dynamic';
     }
@@ -113,7 +117,10 @@ class FieldDj extends CodePartDj {
     return parseAs;
   }
 
-  bool get hasDefaultValue => defaultValue != null;
+  bool get hasDefaultValue => defaultValue != null || defaultValueDj != null;
+
+  String get getDefaultValue =>
+      defaultValue != null ? defaultValue! : defaultValueDj!.toString();
 
   bool get isPrivate => (name ?? '').startsWith('_');
 }

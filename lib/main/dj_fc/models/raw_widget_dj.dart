@@ -135,6 +135,12 @@ class RawWidgetDj {
   FileDj? toWidgetDjFileDj(Map<String, String> djNamesMap) {
     var widgetFileName = ReCase(widgetDjName).snakeCase;
 
+    parameters.forEach((p) {
+      if (djNamesMap[p.type] == null) {
+        print('$widgetDjName ${p.type} not found in djNamesMap');
+      }
+    });
+
     var fields = parameters
         .map(
           (p) => FieldDj(
@@ -146,7 +152,7 @@ class RawWidgetDj {
             isRequired: p.isFieldRequired,
             isOptional: p.isOptional,
             // TODO: get default value here
-            defaultValue: p.asDataType,
+            defaultValue: p.defaultValue,
           ),
         )
         .toList();
@@ -154,7 +160,7 @@ class RawWidgetDj {
     fields.add(
       FieldDj(
         name: 'baseWidgetDjType',
-        defaultValue: StringDj(name),
+        defaultValueDj: StringDj(name),
         superOnly: true,
       ),
     );
